@@ -40,7 +40,7 @@ public class Blog {
 	/**
 	 * 文章标签关联id
 	 */
-	private String btagId;
+	private Integer btagId;
 	
 	/**
 	 * 文章类型, 对应BType枚举
@@ -128,7 +128,7 @@ public class Blog {
 	 * 
 	 * @return
 	 */
-	public String getBtagId() {
+	public Integer getBtagId() {
 		return btagId;
 	}
 
@@ -137,7 +137,7 @@ public class Blog {
 	 * 
 	 * @param btagId
 	 */
-	public void setBtagId(String btagId) {
+	public void setBtagId(Integer btagId) {
 		this.btagId = btagId;
 	}
 

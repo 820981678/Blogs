@@ -73,12 +73,6 @@ public class BlogsController extends BaseController {
 		
 		//初始化blog对象
 		blog.setCheckNum(0);
-		String tagid = "";
-		for (String _s : btags) {
-			tagid += _s;
-		}
-		tagid = tagid.substring(0, tagid.length() - 1);
-		blog.setBtagId(tagid);
 		blog.setState(BlogState.FB.getKey());
 		blog.setCreateTime(new Date());
 		blog.setUpdateTime(new Date());
