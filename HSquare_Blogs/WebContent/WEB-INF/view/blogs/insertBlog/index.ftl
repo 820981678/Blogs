@@ -63,7 +63,7 @@
 			<div style="width:100%; height:50px; line-height:50px; padding-left:10px;">
 				标签:
 				<#list btag as tag>
-					<input type="checkbox" value="${tag.id}" name="btags" />${tag.tagName}
+					<input type="radio" value="${tag.id}" name="btagId" />${tag.tagName}
 				</#list>
 			</div>
 		</div>

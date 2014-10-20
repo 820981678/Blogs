@@ -68,7 +68,7 @@ public class BlogsController extends BaseController {
 	 */
 	@RequestMapping(value="/release.do", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> release(Blog blog,String editorValue,String[] btags){
+	public Map<String, Object> release(Blog blog,String editorValue){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		//初始化blog对象
