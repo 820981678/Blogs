@@ -35,7 +35,7 @@ public class Blog {
 	/**
 	 * 文章概述
 	 */
-	private String Overview;
+	private String overview;
 	
 	/**
 	 * 文章标签关联id
@@ -111,7 +111,7 @@ public class Blog {
 	 * @return
 	 */
 	public String getOverview() {
-		return Overview;
+		return overview;
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class Blog {
 	 * @param overview
 	 */
 	public void setOverview(String overview) {
-		Overview = overview;
+		this.overview = overview;
 	}
 
 	/**

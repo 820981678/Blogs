@@ -21,6 +21,12 @@
 <script>
 	$(function(){
 		$("#release").click(function(){
+			//初始化提交表单
+			var arr = [];
+	        arr.push(UE.getEditor('editor').getContentTxt());
+	        alert(arr.join());
+			$("#overview").val(arr.join());
+			
 			$.ajax({
 				url:'${webRoot}blogs/release.do',
 				type:'post',
@@ -49,6 +55,7 @@
 			<div style="width:100%; heigth:30px; line-height:30px; border-bottom: 2px solid #1ABC9C; ">
 				<strong style="margin-left:10px;">基本信息</strong>
 			</div>
+			<input id="overview" type="hidden" name="overview" />
 			<div style="width:100%; height:50px; line-height:50px; padding-left:10px; margin-top:10px;">
 				类型:
 				<#list btype as type>
