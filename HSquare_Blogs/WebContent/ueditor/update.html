@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>完整demo</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" charset="utf-8" src="ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="lang/zh-cn/zh-cn.js"></script>
+    
+    <link href="themes/default/css/ueditor.css" rel="stylesheet" type="text/css" />
+
+    <style type="text/css">
+        div{
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>完整demo</h1>
+    <script id="editor" type="text/plain" style="width:100%;height:500px;">
+		<p>
+    <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px;">JVM的持久代——何去何从？<br/></span>
+</p>
+<p>
+    <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px; line-height: 25.2000007629395px;">本文会介绍一些JVM内存结构的基本概念，然后很快会讲到持久代，来看下Java SE 8发布后它究竟到哪去了。</span>
+</p>
+<h6>
+    <span style="font-size: 18px; font-family: 微软雅黑, &#39;Microsoft YaHei&#39;;">基础知识</span>
+</h6>
+<p>
+    <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px; line-height: 25.2000007629395px;">JVM只不过是运行在你系统上的另一个进程而已，这一切的魔法始于一个java命令。正如任何一个操作系统进程那样，JVM也需要内存来完成它的运行时操作。记住——JVM本身是硬件的一层软件抽象，在这之上才能够运行Java程序，也才有了我们所吹嘘的平台独立性以及WORA（一次编写，处处运行）。</span>
+</p>
+<h6>
+    <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 18px; line-height: 25.2000007629395px;">快速过一遍JVM的内存结构</span>
+</h6>
+<p>
+    <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px; line-height: 25.2000007629395px;">正如虚拟机规范所说的那样，JVM中的内存分为5个虚拟的区域。</span>
+</p>
+<ul class=" list-paddingleft-2" style="list-style-type: disc;">
+    <li>
+        <p>
+            <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px; line-height: 25.2000007629395px;">堆</span>
+        </p>
+    </li>
+    <li>
+        <p>
+            <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px; line-height: 25.2000007629395px;">方法区（非堆）</span>
+        </p>
+    </li>
+    <li>
+        <p>
+            <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px; line-height: 25.2000007629395px;">JVM栈</span>
+        </p>
+    </li>
+    <li>
+        <p>
+            <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px; line-height: 25.2000007629395px;">本地栈</span>
+        </p>
+    </li>
+    <li>
+        <p>
+            <span style="font-family: 微软雅黑, &#39;Microsoft YaHei&#39;; font-size: 14px; line-height: 25.2000007629395px;">PC寄存器<span style="font-family: Helvetica, Tahoma, Arial, sans-serif; font-size: 14px; line-height: 25.2000007629395px;"><br/></span></span>
+        </p>
+    </li>
+</ul>
+<p>
+    <span style="font-family: arial, helvetica, sans-serif; font-size: 14px;"></span>
+</p>
+<pre class="brush:java;toolbar:false">public static void main(String[] args){
+
+}</pre>
+<p>
+    <span style="font-family: arial, helvetica, sans-serif; font-size: 14px;"></span><br/>
+</p>
+	</script>
+</div>
+</body>
+</html>
