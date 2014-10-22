@@ -9,14 +9,14 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-import com.common.util.DBUtil;
-import com.common.util.LogsUtil;
-import com.common.util.ObjectUtil;
-import com.common.util.PropsUtil;
-import com.common.util.StringUtil;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import com.mchange.v2.c3p0.DataSources;
 import com.mchange.v2.c3p0.PooledDataSource;
+import com.util.DBUtil;
+import com.util.LogsUtil;
+import com.util.ObjectUtil;
+import com.util.PropsUtil;
+import com.util.StringUtil;
 
 /**
  * <pre>

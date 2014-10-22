@@ -27,15 +27,15 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.apache.log4j.Logger;
 
-import com.common.util.DBUtil;
-import com.common.util.LogHandle;
-import com.common.util.LogsUtil;
-import com.common.util.ObjectUtil;
-import com.common.util.StringUtil;
-import com.common.util._Util;
 import com.connection.page.Page;
 import com.inter.DbProperties;
 import com.sun.rowset.CachedRowSetImpl;
+import com.util.DBUtil;
+import com.util.LogHandle;
+import com.util.LogsUtil;
+import com.util.ObjectUtil;
+import com.util.StringUtil;
+import com.util._Util;
 
 /**
  * <pre>
