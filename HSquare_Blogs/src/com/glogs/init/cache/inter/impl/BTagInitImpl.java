@@ -2,12 +2,12 @@ package com.glogs.init.cache.inter.impl;
 
 import java.util.List;
 
-import com.common.util.LogsUtil;
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.glogs.entity.blog.BTag;
 import com.glogs.init.cache.GlobalCache;
 import com.glogs.init.cache.inter.CacheInit;
+import com.util.LogsUtil;
 
 /**
  * 文章标签 缓存初始化 实现类

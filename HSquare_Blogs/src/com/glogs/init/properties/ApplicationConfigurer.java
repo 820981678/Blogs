@@ -5,7 +5,7 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.common.util.StringUtil;
+import com.util.StringUtil;
 
 /**
  * 持有spring容器applicationContext对象持有,提供公共方法访问容器对象

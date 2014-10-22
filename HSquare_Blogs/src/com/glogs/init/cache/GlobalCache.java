@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 
-import com.common.util.LogsUtil;
 import com.glogs.entity.blog.BTag;
 import com.glogs.init.cache.inter.CacheInit;
+import com.util.LogsUtil;
 
 /**
  * 全局公共对象缓存持有

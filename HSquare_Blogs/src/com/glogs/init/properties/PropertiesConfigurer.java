@@ -7,8 +7,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
-import com.common.util.LogsUtil;
 import com.inter.DbProperties;
+import com.util.LogsUtil;
 
 public class PropertiesConfigurer extends PropertyPlaceholderConfigurer implements DbProperties {
 	

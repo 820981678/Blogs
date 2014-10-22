@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-import com.common.util.LogHandle;
-import com.common.util.LogsUtil;
-import com.common.util.StringUtil;
+import com.util.LogHandle;
+import com.util.LogsUtil;
+import com.util.StringUtil;
 
 /**
  * <pre>

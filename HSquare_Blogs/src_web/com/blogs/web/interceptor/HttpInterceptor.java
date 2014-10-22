@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.common.util.StringUtil;
 import com.glogs.util.PublicKey;
+import com.util.StringUtil;
 
 /**
  * 主要记录所有的请求信息
