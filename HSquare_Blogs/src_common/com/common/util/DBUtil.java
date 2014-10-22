@@ -63,6 +63,22 @@ public abstract class DBUtil extends _Util {
         sb.append(" from (").append(sql).append(")");
         return sb.toString();
     }
+    
+    /**
+     * 转换普通SQL 的 select count(1) 语句 （Mysql 版本）.
+     * 
+     * @param sql
+     * @return
+     */
+    public static String buildCountSql_mysql(final String sql){
+    	StringBuffer sb = new StringBuffer();
+        sb.append("select count(1) ").append(OTALCOUNT_KEY);
+        /**
+         * mysql 需要添加上 表的别名 t, oracle不需要添加别名
+         */
+        sb.append(" from (").append(sql).append(") t");
+        return sb.toString();
+    }
 
     /**
      * 构建分页SQL语句（Oracle 版本）.
@@ -80,6 +96,22 @@ public abstract class DBUtil extends _Util {
         sb.append(sql).append(" ) data where rownum<= ").append(endrow);
         sb.append(") where rownum_ > ").append(beginrow);
         return sb.toString();
+    }
+    
+    /**
+     * 构建分页SQL语句(Mysql 版本)
+     * 
+     * @param sql
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    public static String buildPageSql_mysql(String sql, final int pageNo, final int pageSize){
+    	StringBuffer sb = new StringBuffer();
+    	String begin = String.valueOf((pageNo - 1) * pageSize);
+    	sb.append("select * from ( ");
+    	sb.append(sql).append(" ) t limit ").append(begin).append(",").append(pageSize);
+    	return sb.toString();
     }
 
     /**

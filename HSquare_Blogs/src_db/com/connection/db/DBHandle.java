@@ -354,8 +354,8 @@ public final class DBHandle {
      * @return Page<T>
      * @throws DBException
      */
-    public static <T> Page<T> query(final String sql, final Object[] params, final Page<T> page) throws DBException {
-        return exceute(_Util.DEFAULT, sql, params, null, page);
+    public static <T> Page<T> query(final String sql, final Object[] params, final Page<T> page,Base base) throws DBException {
+        return exceute(_Util.DEFAULT, sql, params, null, page,base);
     }
 
     /**
@@ -368,9 +368,9 @@ public final class DBHandle {
      * @return Page<T>
      * @throws DBException
      */
-    public static <T> Page<T> query(final String key, final String sql, final Object[] params, final Page<T> page)
+    public static <T> Page<T> query(final String key, final String sql, final Object[] params, final Page<T> page,Base base)
             throws DBException {
-        return exceute(key, sql, params, null, page);
+        return exceute(key, sql, params, null, page,base);
     }
 
     /**
@@ -384,9 +384,9 @@ public final class DBHandle {
      * @return Page<T>
      * @throws DBException
      */
-    public static <T> Page<T> query(final String sql, final Object[] params, final Class<T> clazz, final Page<T> page)
+    public static <T> Page<T> query(final String sql, final Object[] params, final Class<T> clazz, final Page<T> page,Base base)
             throws DBException {
-        return exceute(_Util.DEFAULT, sql, params, clazz, page);
+        return exceute(_Util.DEFAULT, sql, params, clazz, page,base);
     }
 
     /**
@@ -402,8 +402,8 @@ public final class DBHandle {
      * @throws DBException
      */
     public static <T> Page<T> query(final String key, final String sql, final Object[] params, final Class<T> clazz,
-            final Page<T> page) throws DBException {
-        return exceute(key, sql, params, clazz, page);
+            final Page<T> page,Base base) throws DBException {
+        return exceute(key, sql, params, clazz, page,base);
     }
 
     /**
@@ -752,9 +752,14 @@ public final class DBHandle {
      */
     @SuppressWarnings("unchecked")
     private static <T> Page<T> exceute(final String key, final String sql, final Object[] params, final Class<T> clazz,
-            Page<T> page) throws DBException {
+            Page<T> page,Base base) throws DBException {
         if (page.isAutoCount()) {
-            String totalSql = DBUtil.buildCountSql(sql);
+            String totalSql = "";
+            if(base == Base.Oracle){
+            	totalSql = DBUtil.buildCountSql(sql);
+            } else if (base == Base.Mysql){
+            	totalSql = DBUtil.buildCountSql_mysql(sql);
+            }
             Object totalCount = queryScalar(key, totalSql, params);
             if (totalCount == null) {
                 throw new DBException("DB_QUERY", key + " db query page totalCount is invalid, sql:" + totalSql + ", params:"
@@ -765,7 +770,12 @@ public final class DBHandle {
         }
 
         if (!page.isAutoCount() || page.getTotalCount() != 0) {
-            String pageSql = DBUtil.buildPageSql(sql, page.getPageNo(), page.getPageSize());
+            String pageSql = "";
+            if(base == Base.Oracle){
+            	pageSql = DBUtil.buildPageSql(sql, page.getPageNo(), page.getPageSize());
+            } else if (base == Base.Mysql){
+            	pageSql = DBUtil.buildPageSql_mysql(sql, page.getPageNo(), page.getPageSize());
+            }
             List<T> list = null;
             if (null != clazz) {
                 list = exceute(key, pageSql, new BeanListHandler<T>(clazz), params);
@@ -882,5 +892,17 @@ public final class DBHandle {
     public void setDbProperties(DbProperties dbProperties) {
 		this.dbProperties = dbProperties;
 	}
+    
+    /**
+     * 数据库类型枚举
+     * 
+     * @author Administrator
+     *
+     */
+    public enum Base{
+    	Oracle,
+    	Mysql,
+    	Mssql
+    }
 
 }
