@@ -43,6 +43,11 @@ public class Blog {
 	private Integer btagId;
 	
 	/**
+	 * 保存文章标签 名称(该字段只用于 页面显示数据使用)
+	 */
+	private String btagName;
+	
+	/**
 	 * 文章类型, 对应BType枚举
 	 */
 	private Integer btype;
@@ -51,6 +56,11 @@ public class Blog {
 	 * 发布人id
 	 */
 	private Integer userId;
+	
+	/**
+	 * 发布人姓名
+	 */
+	private String userName;
 	
 	/**
 	 * 创建时间
@@ -74,6 +84,7 @@ public class Blog {
 
 	/**
 	 * id
+	 * 
 	 * @return
 	 */
 	public Integer getId() {
@@ -82,6 +93,7 @@ public class Blog {
 
 	/**
 	 * id
+	 * 
 	 * @param id
 	 */
 	public void setId(Integer id) {
@@ -90,6 +102,7 @@ public class Blog {
 
 	/**
 	 * 文章标题
+	 * 
 	 * @return
 	 */
 	public String getTitle() {
@@ -139,6 +152,42 @@ public class Blog {
 	 */
 	public void setBtagId(Integer btagId) {
 		this.btagId = btagId;
+	}
+	
+	/**
+	 * 保存文章标签 名称(该字段只用于 页面显示数据使用)
+	 * 
+	 * @return
+	 */
+	public String getBtagName() {
+		return btagName;
+	}
+
+	/**
+	 * 保存文章标签 名称(该字段只用于 页面显示数据使用)
+	 * 
+	 * @return
+	 */
+	public void setBtagName(String btagName) {
+		this.btagName = btagName;
+	}
+	
+	/**
+	 * 发布人姓名
+	 * 
+	 * @return
+	 */
+	public String getUserName() {
+		return userName;
+	}
+
+	/**
+	 * 发布人姓名
+	 * 
+	 * @return
+	 */
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	/**

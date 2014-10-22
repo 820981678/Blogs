@@ -17,12 +17,12 @@
 			
 		</div>
 		<div class="user">
-			<a href="blogs/addBlog.do" target="_blank">发布Blog</a>
+			<!-- <a href="blogs/addBlog.do" target="_blank">发布Blog</a> -->
 		</div>
 	</header>
 	
 	<section id="section" class="section">
-		<iframe name="iframe" id="iframe" src="blogs/index.do?type=index" scrolling="no" frameborder="0" height="100%" id="mainFrame" width="100%"></iframe>
+		<iframe name="iframe" id="iframe" src="blogs/index.do" scrolling="no" frameborder="0" height="100%" id="mainFrame" width="100%"></iframe>
 	</section>
 	
 	<footer id="footer" class="footer">

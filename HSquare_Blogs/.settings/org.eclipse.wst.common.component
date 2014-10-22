@@ -2,7 +2,6 @@
     <wb-module deploy-name="HSquare_Blogs">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_common"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_db"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_web"/>
         <property name="context-root" value="HSquare_Blogs"/>

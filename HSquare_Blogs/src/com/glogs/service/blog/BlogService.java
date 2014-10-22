@@ -1,6 +1,7 @@
 package com.glogs.service.blog;
 
 import com.connection.db.DBException;
+import com.connection.page.Page;
 import com.glogs.entity.blog.Blog;
 
 /**
@@ -12,6 +13,16 @@ import com.glogs.entity.blog.Blog;
  * @version V1.0
  */
 public interface BlogService {
+	
+	/**
+	 * 分页查询所有博客
+	 * 
+	 * @param pageNo 当前页码
+	 * @param pageSize 每页显示条数
+	 * @return
+	 * @throws DBException
+	 */
+	Page<Blog> queryBlog(int pageNo, int pageSize) throws DBException;
 	
 	/**
 	 * 插入一条博客
@@ -29,4 +40,5 @@ public interface BlogService {
 	 * @return
 	 */
 	int addBlogContent(Integer blogId,String content) throws DBException ;
+	
 }

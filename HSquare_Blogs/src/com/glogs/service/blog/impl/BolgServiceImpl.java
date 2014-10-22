@@ -4,6 +4,8 @@ import java.util.Map;
 
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
+import com.connection.db.DBHandle.Base;
+import com.connection.page.Page;
 import com.glogs.entity.blog.Blog;
 import com.glogs.service.blog.BlogService;
 
@@ -16,6 +18,24 @@ import com.glogs.service.blog.BlogService;
  * @version V1.0
  */
 public class BolgServiceImpl implements BlogService {
+	
+	/**
+	 * 分页查询所有博客
+	 * 
+	 * @param pageNo 当前页码
+	 * @param pageSize 每页显示条数
+	 * @return
+	 * @throws DBException
+	 */
+	@Override
+	public Page<Blog> queryBlog(int pageNo, int pageSize) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM ").append(Blog.DB_NAME);
+		
+		Page<Blog> page = DBHandle.query(sql.toString(), new Object[0], Blog.class, new Page<Blog>(pageNo, pageSize),Base.Mysql);
+		
+		return page;
+	}
 
 	/**
 	 * 插入一条博客
@@ -28,11 +48,11 @@ public class BolgServiceImpl implements BlogService {
 	public int add(Blog blog) throws DBException {
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO ").append(Blog.DB_NAME);
-		sql.append("(TITLE,OVERVIEW,BTAGID,BTYPE,USERID,CREATETIME,UPDATETIME,CHECKNUM,STATE) VALUES(?,?,?,?,?,?,?,?,?)");
+		sql.append("(TITLE,OVERVIEW,BTAGID,BTYPE,USERID,USERNAME,CREATETIME,UPDATETIME,CHECKNUM,STATE) VALUES(?,?,?,?,?,?,?,?,?,?)");
 		Object[] params = new Object[]{
 			blog.getTitle(),blog.getOverview(),blog.getBtagId(),blog.getBtype(),
-			blog.getUserId(),blog.getCreateTime(),blog.getUpdateTime(),blog.getCheckNum(),
-			blog.getState()
+			blog.getUserId(),blog.getUserName(),blog.getCreateTime(),blog.getUpdateTime(),
+			blog.getCheckNum(),blog.getState()
 		};
 		int code = DBHandle.exceute(sql.toString(), params);
 		int backId = 0;
@@ -60,5 +80,5 @@ public class BolgServiceImpl implements BlogService {
 		};
 		return DBHandle.exceute(sql.toString(), params);
 	}
-	
+
 }

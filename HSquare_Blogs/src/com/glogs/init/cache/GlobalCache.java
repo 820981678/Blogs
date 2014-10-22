@@ -42,6 +42,22 @@ public class GlobalCache implements InitializingBean {
 		}
 	}
 	
+	/**
+	 * 根据文章标签的id 获取该文章标签
+	 * @param id
+	 * @return 没有找到返回null
+	 */
+	public static BTag getBtagById(Integer id){
+		for (BTag bTag : global_btag) {
+			if(id == bTag.getId()){
+				return bTag;
+			}
+		}
+		return null;
+	}
+	
+	/*get  set */
+	
 	public List<CacheInit> getCacheInit() {
 		return cacheInit;
 	}

@@ -2,21 +2,26 @@ package com.blogs.web.action.blogs;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blogs.web.action.BaseController;
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
+import com.connection.page.Page;
 import com.glogs.emu.blog.BType;
 import com.glogs.emu.blog.BlogState;
+import com.glogs.entity.blog.BTag;
 import com.glogs.entity.blog.Blog;
 import com.glogs.init.cache.GlobalCache;
 import com.glogs.service.blog.BlogService;
@@ -32,13 +37,75 @@ public class BlogsController extends BaseController {
 	private BlogService blogServiceImpl;
 	
 	/**
+	 * 跳转到 所有博客页面
 	 * 
-	 * @param type
 	 * @return
 	 */
-	@RequestMapping(value="index.do")
-	public ModelAndView index(String type){
-		return new ModelAndView("/blogs/index");
+	@RequestMapping(value="/index.do")
+	public ModelAndView index(){
+		ModelAndView model = new ModelAndView();
+		model.setViewName("/blogs/index");
+		return model;
+	}
+	
+	/**
+	 * 分页查询所有博客,跳转到博客展示页
+	 * 
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/query.do")
+	public ModelAndView query(@RequestParam(value="pageNo",required=false)Integer pageNo, @RequestParam(value="pageSize",required=false)Integer pageSize){
+		ModelAndView model = new ModelAndView();
+		//初始化分页参数
+		if(pageNo == null && pageSize == null){
+			pageNo = 1;
+			pageSize = 10;
+		}
+		Page<Blog> page = null;
+		try {
+			page = blogServiceImpl.queryBlog(pageNo, pageSize);
+			System.out.println(page);
+		} catch (DBException e) {
+			log.error("find query error", e);
+		}
+		model.addObject("page", page);
+		model.setViewName("/blogs/index");
+		return model;
+	}
+	
+	/**
+	 * 分页查询所有博客,跳转到博客展示页(ajax方式)
+	 * 
+	 * @param pageNo
+	 * @param pageSize
+	 * @return
+	 */
+	@RequestMapping(value="/query_ajax.do")
+	@ResponseBody
+	public Map<String, Object> query_ajax(@RequestParam(value="pageNo",required=false)Integer pageNo, @RequestParam(value="pageSize",required=false)Integer pageSize){
+		Map<String, Object> map = new HashMap<String, Object>();
+		//初始化分页参数
+		if(pageNo == null && pageSize == null){
+			pageNo = 1;
+			pageSize = 10;
+		}
+		Page<Blog> page = null;
+		try {
+			page = blogServiceImpl.queryBlog(pageNo, pageSize);
+			//设置页面所需的 标签名称
+			for(int i = 0; i < page.getResult().size(); i++){
+				page.getResult().get(i).setBtagName(GlobalCache.getBtagById(page.getResult().get(i).getBtagId()).getTagName());
+			}
+			map.put("code", 0);
+			map.put("page", page);
+			
+		} catch (DBException e) {
+			log.error("find query error", e);
+			map.put("code", 1);
+		}
+		return map;
 	}
 	
 	/**
@@ -76,7 +143,9 @@ public class BlogsController extends BaseController {
 		blog.setState(BlogState.FB.getKey());
 		blog.setCreateTime(new Date());
 		blog.setUpdateTime(new Date());
+		// TODO 完成对发布人的设置
 		blog.setUserId(0);
+		blog.setUserName("Apple");
 		
 		try {
 			DBHandle.beginTransation();

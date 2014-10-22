@@ -50,7 +50,17 @@
 	    <property name="suffix">  
 	        <value>.ftl</value>  
 	    </property>  
+	    
 	    <property name="contentType" value="text/html;charset=UTF-8"></property>
+	    
+	    <!-- 配置自定义方法 -->
+		<property name="attributesMap">
+			<map>
+				<entry key="queryBtag">
+					<bean class="com.glogs.freemarkfunc.QueryBtag"></bean>
+				</entry>
+			</map>
+		</property>
 	</bean>
 	
 	<!-- freemarker解析器 -->
