@@ -36,6 +36,27 @@ public class BolgServiceImpl implements BlogService {
 		
 		return page;
 	}
+	
+	/**
+	 * 分页查询博客 (根据Btag id 查询)
+	 * 
+	 * @param pageNo
+	 * @param pageSize
+	 * @param btagid
+	 * @return
+	 */
+	@Override
+	public Page<Blog> queryBlogByBtag(int pageNo, int pageSize, Integer btagid) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM ").append(Blog.DB_NAME);
+		sql.append(" WHERE BTAGID=?");
+		Object[] params = new Object[]{
+			btagid
+		};
+		
+		Page<Blog> page = DBHandle.query(sql.toString(), params, Blog.class, new Page<Blog>(pageNo, pageSize),Base.Mysql);
+		return page;
+	}
 
 	/**
 	 * 插入一条博客

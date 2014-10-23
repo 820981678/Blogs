@@ -25,6 +25,16 @@ public interface BlogService {
 	Page<Blog> queryBlog(int pageNo, int pageSize) throws DBException;
 	
 	/**
+	 * 分页查询博客 (根据Btag id 查询)
+	 * 
+	 * @param pageNo
+	 * @param pageSize
+	 * @param btagid
+	 * @return
+	 */
+	public Page<Blog> queryBlogByBtag(int pageNo, int pageSize, Integer btagid) throws DBException;
+	
+	/**
 	 * 插入一条博客
 	 * 
 	 * @param blog

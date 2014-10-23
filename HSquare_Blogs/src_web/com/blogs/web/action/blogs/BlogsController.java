@@ -2,6 +2,7 @@ package com.blogs.web.action.blogs;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -19,6 +20,7 @@ import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.glogs.emu.blog.BType;
 import com.glogs.emu.blog.BlogState;
+import com.glogs.entity.blog.BTag;
 import com.glogs.entity.blog.Blog;
 import com.glogs.init.cache.GlobalCache;
 import com.glogs.service.blog.BlogService;
@@ -41,6 +43,10 @@ public class BlogsController extends BaseController {
 	@RequestMapping(value="/index.do")
 	public ModelAndView index(){
 		ModelAndView model = new ModelAndView();
+		//设置文章标签
+		List<BTag> global_btag = GlobalCache.global_btag;
+		model.addObject("global_btag", global_btag);
+		
 		model.setViewName("/blogs/index");
 		return model;
 	}
@@ -53,7 +59,10 @@ public class BlogsController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value="/query.do")
-	public ModelAndView query(@RequestParam(value="pageNo",required=false)Integer pageNo, @RequestParam(value="pageSize",required=false)Integer pageSize){
+	public ModelAndView query(
+			@RequestParam(value="pageNo",required=false)Integer pageNo, 
+			@RequestParam(value="pageSize",required=false)Integer pageSize){
+		
 		ModelAndView model = new ModelAndView();
 		//初始化分页参数
 		if(pageNo == null && pageSize == null){
@@ -77,11 +86,16 @@ public class BlogsController extends BaseController {
 	 * 
 	 * @param pageNo
 	 * @param pageSize
+	 * @param btagId 是否根据 btagid 进行查询
 	 * @return
 	 */
 	@RequestMapping(value="/query_ajax.do")
 	@ResponseBody
-	public Map<String, Object> query_ajax(@RequestParam(value="pageNo",required=false)Integer pageNo, @RequestParam(value="pageSize",required=false)Integer pageSize){
+	public Map<String, Object> query_ajax(
+			@RequestParam(value="pageNo",required=false)Integer pageNo, 
+			@RequestParam(value="pageSize",required=false)Integer pageSize,
+			@RequestParam(required=false)Integer btagId ){
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		//初始化分页参数
 		if(pageNo == null && pageSize == null){
@@ -90,7 +104,12 @@ public class BlogsController extends BaseController {
 		}
 		Page<Blog> page = null;
 		try {
-			page = blogServiceImpl.queryBlog(pageNo, pageSize);
+			if(btagId != null){
+				page = blogServiceImpl.queryBlogByBtag(pageNo, pageSize, btagId);
+			} else {
+				page = blogServiceImpl.queryBlog(pageNo, pageSize);
+			}
+			
 			//设置页面所需的 标签名称
 			for(int i = 0; i < page.getResult().size(); i++){
 				page.getResult().get(i).setBtagName(GlobalCache.getBtagById(page.getResult().get(i).getBtagId()).getTagName());

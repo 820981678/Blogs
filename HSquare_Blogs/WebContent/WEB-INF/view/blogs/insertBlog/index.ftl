@@ -8,13 +8,13 @@
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 
 <!-- ueditor -->
-<script type="text/javascript" charset="utf-8" src="${webRoot}ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="${webRoot}ueditor/ueditor.all.min.js"> </script>
-<script type="text/javascript" charset="utf-8" src="${webRoot}ueditor/lang/zh-cn/zh-cn.js"></script>
-<link href="${webRoot}ueditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor/lang/zh-cn/zh-cn.js"></script>
+<link href="${webRoot}plug/ueditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css" />
 
 <!-- button css-->
-<link rel="stylesheet" type="text/css" href="${webRoot}button/button.css" />
+<link rel="stylesheet" type="text/css" href="${webRoot}plug/button/button.css" />
 
 </head>
 

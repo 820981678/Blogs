@@ -6,7 +6,7 @@
 <link href="${webRoot}static/blogs/css/index.css" rel="stylesheet" />
 
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script src="${webRoot}laytpl/laytpl.js"></script>
+<script src="${webRoot}plug/laytpl/laytpl.js"></script>
 
 <script type='text/javascript'>
 
@@ -33,9 +33,17 @@
         return format;
     }
     
+    /**
+     * 用于分页
+     */
     var nextPage;
     var pageSize;
     var hasNext;
+    
+    /**
+     * 记录当前请求url, 用于分页
+     */
+    var queryURL; 
 	
 	$(function(){
 		$.ajax({
@@ -50,6 +58,9 @@
 				view(data);
 				createParentHeight();
 				nextpage(data);
+				
+				//设置当前请求url
+				queryURL = '${webRoot}blogs/query_ajax.do';
 			}
 		});
 	});
@@ -77,23 +88,25 @@
 		nextPage = data.page.nextPage;
 		pageSize = data.page.pageSize;
 		hasNext = data.page.hasNext;
-		
-		if(!hasNext){
+		//验证是否还有下一页
+		if(hasNext){
+			$("#nextpage").css("background-color","#1ABC9C");
+			$("#nextpage").html("Next Page");
+		} else {
 			$("#nextpage").css("background-color","#555");
 			$("#nextpage").html("Not Have Next");
-			$("#nextpage").unbind("click");
 		}
 	}
 	
 	$(function(){
 		//注册下一页事件
 		$("#nextpage").click(function(){
-			//验证是否还有下一页
+			//判断是否有下一页
 			if(!hasNext){
 				return;
 			}
 			$.ajax({
-				url: '${webRoot}blogs/query_ajax.do',
+				url: queryURL,
 				data: {'pageNo':nextPage,'pageSize':pageSize},
 				type: 'post',
 				dataType: 'json',
@@ -109,6 +122,28 @@
 			});
 		});
 	});
+	
+	function queryBtag(URL){
+		$.ajax({
+			url: URL,
+			type: 'post',
+			dataType: 'json',
+			success: function(data){
+				if(data.code != 0){
+					$("#view").append("数据加载失败!");
+					return;
+				}
+				//清空原有的数据(重新加载根据btagid查询的数据)
+				$("#view").html("");
+				view(data);
+				createParentHeight();
+				nextpage(data);
+				
+				//设置当前请求url
+				queryURL = URL;
+			}
+		});
+	}
 </script>
 <!-- js模板引擎 -->
 <script id="demo" type="text/html">
@@ -140,6 +175,10 @@
 	a {
 		color: #00a67c;
 		text-decoration: none;
+	}
+	
+	a:hover{
+		color: #d9534f;
 	}
 </style>
 </head>
@@ -178,7 +217,21 @@
 			Next Page
 		</div>
 	</div>
+	
 	<div style="width: 300px; height: 100%; float: left; margin-left: 10px;">
+		<!-- 导航 -->
+		<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px;">
+			<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
+				<li style="width:100%; height:40px; line-height:40px; padding-left:10px; font-size:18px;">
+					文章标签
+				</li>
+				<#list global_btag as btag>
+					<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
+						<a href="javascript:void(0);" onclick="queryBtag('${webRoot}blogs/query_ajax.do?btagId=${btag.id}')">${btag.tagName}</a>
+					</li>
+				</#list>
+			</ul>
+		</div>
 		<!-- 热门排行 -->
 		<div style="width: 100%; height: 500px; background-color: white; margin-bottom: 10px;">
 			
