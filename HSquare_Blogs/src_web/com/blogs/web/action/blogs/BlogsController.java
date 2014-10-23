@@ -2,13 +2,11 @@ package com.blogs.web.action.blogs;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +19,6 @@ import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.glogs.emu.blog.BType;
 import com.glogs.emu.blog.BlogState;
-import com.glogs.entity.blog.BTag;
 import com.glogs.entity.blog.Blog;
 import com.glogs.init.cache.GlobalCache;
 import com.glogs.service.blog.BlogService;

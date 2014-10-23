@@ -9,9 +9,33 @@
 <script src="${webRoot}laytpl/laytpl.js"></script>
 
 <script type='text/javascript'>
-	
-	//全局转换 BTag
-	var global_btag;
+
+	/**
+	 * 日期格式 将long类型的日期 格式化为 format的格式
+	 * new Date(datetimelong).format('yyyy-MM-dd')
+	 */
+	Date.prototype.format =function(format) {
+        var o = {
+        "M+" : this.getMonth()+1, //month
+        "d+" : this.getDate(), //day
+        "h+" : this.getHours(), //hour
+        "m+" : this.getMinutes(), //minute
+        "s+" : this.getSeconds(), //second
+        "q+" : Math.floor((this.getMonth()+3)/3), //quarter
+        "S" : this.getMilliseconds() //millisecond
+        }
+        if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+        (this.getFullYear()+"").substr(4- RegExp.$1.length));
+        for(var k in o)if(new RegExp("("+ k +")").test(format))
+        format = format.replace(RegExp.$1,
+        RegExp.$1.length==1? o[k] :
+        ("00"+ o[k]).substr((""+ o[k]).length));
+        return format;
+    }
+    
+    var nextPage;
+    var pageSize;
+    var hasNext;
 	
 	$(function(){
 		$.ajax({
@@ -23,22 +47,67 @@
 					$("#view").append("数据加载失败!");
 					return;
 				}
-				
-				global_btag = data.global_btag;
-				
-				//获取模板渲染的数据
-				var list = data.page;
-				var gettpl = document.getElementById('demo').innerHTML;
-				laytpl(gettpl).render(list, function(html){
-				    document.getElementById('view').innerHTML = html;
-				});
-				
-				//重新设置父页面iframe的高度,便于自适应该页面高度
-				$("#iframe",window.parent.document).height(0);
-				var height = $(document).height();
-				parent.initHeight(height);
+				view(data);
+				createParentHeight();
+				nextpage(data);
 			}
-		})
+		});
+	});
+	
+	//渲染js模板
+	function view(data){
+		//获取模板渲染的数据
+		var list = data.page;
+		var gettpl = document.getElementById('demo').innerHTML;
+		laytpl(gettpl).render(list, function(html){
+		    $('#view').append(html);
+		});
+	}
+	
+	//重新计算父页面高度
+	function createParentHeight(){
+		//重新设置父页面iframe的高度,便于自适应该页面高度
+		$("#iframe",window.parent.document).height(0);
+		var height = $(document).height();
+		parent.initHeight(height);
+	}
+	
+	//设置分页项
+	function nextpage(data){
+		nextPage = data.page.nextPage;
+		pageSize = data.page.pageSize;
+		hasNext = data.page.hasNext;
+		
+		if(!hasNext){
+			$("#nextpage").css("background-color","#555");
+			$("#nextpage").html("Not Have Next");
+			$("#nextpage").unbind("click");
+		}
+	}
+	
+	$(function(){
+		//注册下一页事件
+		$("#nextpage").click(function(){
+			//验证是否还有下一页
+			if(!hasNext){
+				return;
+			}
+			$.ajax({
+				url: '${webRoot}blogs/query_ajax.do',
+				data: {'pageNo':nextPage,'pageSize':pageSize},
+				type: 'post',
+				dataType: 'json',
+				success: function(data){
+					if(data.code != 0){
+						$("#view").append("数据加载失败!");
+						return;
+					}
+					view(data);
+					createParentHeight();
+					nextpage(data);
+				}
+			});
+		});
 	});
 </script>
 <!-- js模板引擎 -->
@@ -58,7 +127,7 @@
 			</div>
 			<div style="width:auto; height:30px; line-height:30px;  color:#999;">
 				<span style="margin-right:15px;">发布人: <span style="color:#00a67c"></span>{{d.result[i].userName}}</span>
-				<span style="margin-right:15px;">时间: <span style="color:#00a67c"></span>{{d.result[i].createTime}}</span>
+				<span style="margin-right:15px;">时间: <span style="color:#00a67c"></span>{{= new Date(d.result[i].createTime).format('yyyy-MM-dd hh:mm:ss') }}</span>
 				<span style="margin-right:15px;">点击量: <span style="color:#00a67c"></span>{{d.result[i].checkNum}}</span>
 				<span style="margin-right:15px;">评论: <span style="color:#00a67c"></span>100</span>
 				<span style="margin-right:15px;">点赞: <span style="color:#00a67c"></span>100</span>
@@ -77,7 +146,7 @@
 
 <body>
 	<!-- blogs list -->
-	<div id="view" style="width: 770px; height: auto; float: left;">
+	<div style="width: 770px; height: auto; float: left;">
 		<!--
 		<#list page.result  as blog>
 			<div style="width:770px; height:auto; background-color: white; margin-bottom:10px; ">
@@ -101,6 +170,13 @@
 			</div>
 		</#list>
 		-->
+		<!-- js模板渲染层 -->
+		<div id="view" style="width: 770px; height: auto;">
+		
+		</div>
+		<div id="nextpage" style="width:770px; height:30px; line-height:30px; background-color: #1ABC9C; color: white; text-align: center; cursor:pointer;">
+			Next Page
+		</div>
 	</div>
 	<div style="width: 300px; height: 100%; float: left; margin-left: 10px;">
 		<!-- 热门排行 -->
