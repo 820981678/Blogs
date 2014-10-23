@@ -43,7 +43,7 @@ var queryURL;
 
 $(function(){
 	$.ajax({
-		url: 'blogs/query_ajax.do',
+		url: webRoot + 'blogs/query_ajax.do',
 		type: 'post',
 		dataType: 'json',
 		success: function(data){
@@ -56,7 +56,7 @@ $(function(){
 			nextpage(data);
 			
 			//设置当前请求url
-			queryURL = 'blogs/query_ajax.do';
+			queryURL = webRoot + 'blogs/query_ajax.do';
 		}
 	});
 });
