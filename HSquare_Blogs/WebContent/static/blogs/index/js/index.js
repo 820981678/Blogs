@@ -90,7 +90,7 @@ function nextpage(data){
 		$("#nextpage").html("Next Page");
 	} else {
 		$("#nextpage").css("background-color","#555");
-		$("#nextpage").html("Not Have Next");
+		$("#nextpage").html("No Have Next");
 	}
 }
 
