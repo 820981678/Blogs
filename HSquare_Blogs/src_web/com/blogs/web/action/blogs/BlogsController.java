@@ -47,7 +47,7 @@ public class BlogsController extends BaseController {
 		List<BTag> global_btag = GlobalCache.global_btag;
 		model.addObject("global_btag", global_btag);
 		
-		model.setViewName("/blogs/index");
+		model.setViewName("/blogs/index/index");
 		return model;
 	}
 	
@@ -77,12 +77,12 @@ public class BlogsController extends BaseController {
 			log.error("find query error", e);
 		}
 		model.addObject("page", page);
-		model.setViewName("/blogs/index");
+		model.setViewName("/blogs/index/index");
 		return model;
 	}
 	
 	/**
-	 * 分页查询所有博客,跳转到博客展示页(ajax方式)
+	 * 分页查询所有博客(ajax方式)
 	 * 
 	 * @param pageNo
 	 * @param pageSize

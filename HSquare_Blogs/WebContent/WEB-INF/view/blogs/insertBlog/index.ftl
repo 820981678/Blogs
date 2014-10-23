@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>发布blog</title>
 
+<!-- 本地 -->
 <link href="${webRoot}static/blogs/css/index.css" rel="stylesheet" />
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 
@@ -17,6 +18,14 @@
 <link rel="stylesheet" type="text/css" href="${webRoot}plug/button/button.css" />
 
 </head>
+
+<style>
+	body{
+		margin: 0px;
+		font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 14px;
+	}
+</style>
 
 <script>
 	$(function(){
