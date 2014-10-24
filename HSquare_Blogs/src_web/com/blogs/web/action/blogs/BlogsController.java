@@ -179,4 +179,17 @@ public class BlogsController extends BaseController {
 		return map;
 	}
 	
+	/**
+	 * 跳转到查看 一条博客
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="/seeBlog.do")
+	public ModelAndView seeBlog(){
+		ModelAndView model = new ModelAndView();
+		
+		model.setViewName("/blogs/see/index");
+		return model;
+	}
+	
 }
