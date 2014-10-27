@@ -5,7 +5,7 @@
 <title>发布blog</title>
 
 <!-- 本地 -->
-<link href="${webRoot}static/blogs/index/insertBlog/index.css" rel="stylesheet" />
+<link href="${webRoot}static/blogs/insertBlog/index.css" rel="stylesheet" />
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 
 <!-- ueditor -->
@@ -28,7 +28,7 @@
 		
 	</header>
 <form id="blogForm">
-	<section style="width: 1080px; height: 1100px; margin-top: 10px; margin: 10px auto;">
+	<section style="width: 1080px; height: 1080px; margin-top: 10px; margin: 10px auto;">
 		<!-- 基本信息 -->
 		<div style="width:100%; height:200px; background: white; margin-bottom:10px;">
 			<div style="width:100%; heigth:30px; line-height:30px; border-bottom: 2px solid #1ABC9C; ">
@@ -97,7 +97,7 @@
 	</section>
 	
 	<footer style="width: 100%; height:100px;  background: #555; margin-top: 10px;">
-		
+		<#include "/include/include_footer.ftl" >
 	</footer>
     
 </body>

@@ -111,7 +111,7 @@
 	</section>
 	
 	<footer id="footer" class="footer">
-		
+		<#include "/include/include_footer.ftl" >
 	</footer>
 </body>
 </html>

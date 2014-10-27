@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_db"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_web"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_test"/>
         <property name="context-root" value="HSquare_Blogs"/>
         <property name="java-output-path" value="/HSquare_Blogs/build/classes"/>
     </wb-module>
