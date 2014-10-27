@@ -40,46 +40,52 @@
 	<section id="section" class="section">
 		<div style="width: 870px; height: 700px; float: left; background-color:white;">
 			<!-- 文章基本信息 -->
-			<div style="width:100%; height:105px; border-bottom:1px solid #eee; padding: 2px 20px 12px;">
-				<h1 style="color: #444; font-weight: normal; font-size: 24px; line-height: 60px;">二分查找算法及其变体</h1>
+			<div style="width:100%; height:105px; border-bottom:1px solid #eee; ">
+				<div style="padding: 2px 20px 12px;">
+					<h1 style="color: #444; font-weight: normal; font-size: 24px; line-height: 60px; margin: 5px 0;">二分查找算法及其变体</h1>
+					<div style="width:100%; height:20px; color:#999; ">
+						<span style="margin-right:15px;">发布人: <span style="color:#00a67c">Apple</span></span>
+						<span style="margin-right:15px;">时间: <span style="color:#00a67c">2014-10-20 12:00:00</span></span>
+						<span style="margin-right:15px;">点击量: <span style="color:#00a67c">100</span></span>
+						<span style="margin-right:15px;">评论: <span style="color:#00a67c">100</span></span>
+						<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 		
 		<div style="width: 200px; height: 100%; float: left; margin-left: 10px;">
-			<!-- 导航 -->
-			<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px;">
+			<div style="width: 100%; height: 500px; background-color: white; margin-bottom: 10px;">
 				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
-					<li style="width:100%; height:40px; line-height:40px; padding-left:10px; font-size:18px;">
-						相关文章
+					<li style=" height:40px; line-height:40px; padding-left:10px; font-size:18px; border-bottom:1px solid #eee;">
+						博主资料
 					</li>
-					<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
-						<a href="javascript:void(0);" >AAAAAAAAAA</a>
+				</ul>
+			</div>		
+			<!-- 导航 -->
+			<div style="width: 100%; height: 350px; background-color: white; margin-bottom: 10px;">
+				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
+					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;  border-bottom:1px solid #eee;">
+						阅读排行
 					</li>
-					<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
-						<a href="javascript:void(0);" >BBBBB</a>
-					</li>
-					<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
-						<a href="javascript:void(0);" >CCC</a>
-					</li>
-					<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
-						<a href="javascript:void(0);" >DDDDDDDD</a>
-					</li>
-					<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
-						<a href="javascript:void(0);" >EEEEEEEEEEEEEEEE</a>
+				</ul>
+			</div>
+			<!-- 猜你喜欢 -->
+			<div style="width: 100%; height: 350px; background-color: white; margin-bottom: 10px;">
+				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
+					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;  border-bottom:1px solid #eee;">
+						猜你喜欢
 					</li>
 				</ul>
 			</div>
 			<!-- 热门排行 -->
-			<div style="width: 100%; height: 500px; background-color: white; margin-bottom: 10px;">
-				
-			</div>
-			<!-- 最新发布 -->
-			<div style="width: 100%; height: 300px; background-color: white; margin-bottom: 10px;">
-				
-			</div>
-			<!-- 猜你喜欢 -->
-			<div style="width: 100%; height: 300px; background-color: white; margin-bottom: 10px;">
-				
+			<div style="width: 100%; height: 350px; background-color: white; margin-bottom: 10px;">
+				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
+					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;  border-bottom:1px solid #eee;">
+						热门排行
+					</li>
+				</ul>
 			</div>
 		</div>
 	</section>

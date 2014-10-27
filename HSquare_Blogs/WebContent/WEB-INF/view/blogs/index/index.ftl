@@ -37,11 +37,11 @@
 				{{d.result[i].overview}}
 			</div>
 			<div style="width:auto; height:30px; line-height:30px;  color:#999;">
-				<span style="margin-right:15px;">发布人: <span style="color:#00a67c"></span>{{d.result[i].userName}}</span>
-				<span style="margin-right:15px;">时间: <span style="color:#00a67c"></span>{{= new Date(d.result[i].createTime).format('yyyy-MM-dd hh:mm:ss') }}</span>
-				<span style="margin-right:15px;">点击量: <span style="color:#00a67c"></span>{{d.result[i].checkNum}}</span>
-				<span style="margin-right:15px;">评论: <span style="color:#00a67c"></span>100</span>
-				<span style="margin-right:15px;">点赞: <span style="color:#00a67c"></span>100</span>
+				<span style="margin-right:15px;">发布人: <span style="color:#00a67c">{{d.result[i].userName}}</span></span>
+				<span style="margin-right:15px;">时间: <span style="color:#00a67c">{{= new Date(d.result[i].createTime).format('yyyy-MM-dd hh:mm:ss') }}</span></span>
+				<span style="margin-right:15px;">点击量: <span style="color:#00a67c">{{d.result[i].checkNum}}</span></span>
+				<span style="margin-right:15px;">评论: <span style="color:#00a67c">100</span></span>
+				<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>
 			</div>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
 			<!-- 导航 -->
 			<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px;">
 				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
-					<li style="width:100%; height:40px; line-height:40px; padding-left:10px; font-size:18px;">
+					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;">
 						文章标签
 					</li>
 					<#list global_btag as btag>
