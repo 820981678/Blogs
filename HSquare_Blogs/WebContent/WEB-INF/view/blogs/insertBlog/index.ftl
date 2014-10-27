@@ -5,7 +5,7 @@
 <title>发布blog</title>
 
 <!-- 本地 -->
-<link href="${webRoot}static/blogs/css/index.css" rel="stylesheet" />
+<link href="${webRoot}static/blogs/index/insertBlog/index.css" rel="stylesheet" />
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 
 <!-- ueditor -->
@@ -19,38 +19,8 @@
 
 </head>
 
-<style>
-	body{
-		margin: 0px;
-		font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;
-		font-size: 14px;
-	}
-</style>
-
 <script>
-	$(function(){
-		$("#release").click(function(){
-			//初始化提交表单
-			var arr = [];
-	        arr.push(UE.getEditor('editor').getContentTxt());
-	        alert(arr.join());
-			$("#overview").val(arr.join());
-			
-			$.ajax({
-				url:'${webRoot}blogs/release.do',
-				type:'post',
-				data: $("#blogForm").serialize(),
-				dataType:'json',
-				success:function(data){
-					if(data.code == 0){
-						alert("发布成功!");
-					} else{
-						alert("服务器异常,请稍后再试!");
-					}
-				}
-			});
-		});
-	});
+	var webRoot = ${webRoot};
 </script>
 
 <body style="background: #eee;">
@@ -65,6 +35,7 @@
 				<strong style="margin-left:10px;">基本信息</strong>
 			</div>
 			<input id="overview" type="hidden" name="overview" />
+			<input id="state" type="hidden" name="state" />
 			<div style="width:100%; height:50px; line-height:50px; padding-left:10px; margin-top:10px;">
 				类型:
 				<#list btype as type>

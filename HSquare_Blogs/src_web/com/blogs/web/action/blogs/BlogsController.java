@@ -156,7 +156,6 @@ public class BlogsController extends BaseController {
 		
 		//初始化blog对象
 		blog.setCheckNum(0);
-		blog.setState(BlogState.FB.getKey());
 		blog.setCreateTime(new Date());
 		blog.setUpdateTime(new Date());
 		// TODO 完成对发布人的设置

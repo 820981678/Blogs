@@ -30,7 +30,9 @@ public class BolgServiceImpl implements BlogService {
 	@Override
 	public Page<Blog> queryBlog(int pageNo, int pageSize) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM ").append(Blog.DB_NAME);
+		//不查询状态为保存的博客(state=2);
+		sql.append("SELECT * FROM ").append(Blog.DB_NAME).append(" WHERE STATE=1");
+		sql.append(" ORDER BY UPDATETIME DESC");
 		
 		Page<Blog> page = DBHandle.query(sql.toString(), new Object[0], Blog.class, new Page<Blog>(pageNo, pageSize),Base.Mysql);
 		
@@ -48,8 +50,10 @@ public class BolgServiceImpl implements BlogService {
 	@Override
 	public Page<Blog> queryBlogByBtag(int pageNo, int pageSize, Integer btagid) throws DBException {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM ").append(Blog.DB_NAME);
-		sql.append(" WHERE BTAGID=?");
+		sql.append("SELECT * FROM ").append(Blog.DB_NAME).append(" WHERE STATE=1");
+		sql.append(" AND BTAGID=?");
+		sql.append(" ORDER BY UPDATETIME DESC");
+		
 		Object[] params = new Object[]{
 			btagid
 		};
