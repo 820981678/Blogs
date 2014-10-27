@@ -18,6 +18,11 @@
 
 <!-- js模板引擎 -->
 <script id="demo" type="text/html">
+	{{# if(d.result.length == 0){ }}
+		<div style="width:770px; height:30px; line-height:30px; text-align: center; color:#777;">
+			这里什么都没有,期待您的添加!
+		</div>
+	{{# } }}
 	{{# for(var i = 0, len = d.result.length; i < len; i++){ }}
 	<div style="width:770px; height:auto; background-color: white; margin-bottom:10px; ">
 		<div style="padding: 20px 15px 10px 20px;">
@@ -47,7 +52,7 @@
 <body>
 	<header id="header" class="header">
 		<div class="title">
-			
+			<#include "/include/include_title.ftl" >
 		</div>
 		<div class="daohang">
 			<div style="width:1080px; height:100%; margin:0px auto; font-size:18px;">
