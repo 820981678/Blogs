@@ -61,6 +61,51 @@ public class BolgServiceImpl implements BlogService {
 		Page<Blog> page = DBHandle.query(sql.toString(), params, Blog.class, new Page<Blog>(pageNo, pageSize),Base.Mysql);
 		return page;
 	}
+	
+	/**
+	 * 根据id查询博客实体
+	 * 
+	 * @param id
+	 * @return
+	 * @throws DBException
+	 */
+	@Override
+	public Blog queryBlogById(Integer id) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM ").append(Blog.DB_NAME);
+		sql.append(" WHERE ID=?");
+		
+		Object[] params = new Object[]{
+			id
+		};
+		
+		Blog result = DBHandle.queryFirst(sql.toString(), params, Blog.class);
+		return result;
+	}
+
+	/**
+	 * 根据id查询 该博客的 内容
+	 * 
+	 * @param id
+	 * @return 没有查询到返回空字符串
+	 * @throws DBException
+	 */
+	@Override
+	public String queryBlogTextByBlogId(Integer id) throws DBException {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM ").append(Blog.CONTENT_DB_NAME);
+		sql.append(" WHERE BLOGID=?");
+		
+		Object[] params = new Object[]{
+			id	
+		};
+		
+		Map<String,Object> result = DBHandle.queryFirst(sql.toString(), params);
+		if(result.containsKey("content")){
+			return result.get("content").toString();
+		}
+		return "";
+	}
 
 	/**
 	 * 插入一条博客

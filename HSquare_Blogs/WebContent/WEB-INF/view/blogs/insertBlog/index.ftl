@@ -6,7 +6,8 @@
 
 <!-- 本地 -->
 <link href="${webRoot}static/blogs/insertBlog/index.css" rel="stylesheet" />
-<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="${webRoot}static/blogs/insertBlog/index.js"></script>
 
 <!-- ueditor -->
 <script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor/ueditor.config.js"></script>

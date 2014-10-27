@@ -32,7 +32,25 @@ public interface BlogService {
 	 * @param btagid
 	 * @return
 	 */
-	public Page<Blog> queryBlogByBtag(int pageNo, int pageSize, Integer btagid) throws DBException;
+	Page<Blog> queryBlogByBtag(int pageNo, int pageSize, Integer btagid) throws DBException;
+	
+	/**
+	 * 根据id查询博客实体
+	 * 
+	 * @param id
+	 * @return
+	 * @throws DBException
+	 */
+	Blog queryBlogById(Integer id) throws DBException;
+	
+	/**
+	 * 根据id查询 该博客的 内容
+	 * 
+	 * @param id
+	 * @return
+	 * @throws DBException
+	 */
+	String queryBlogTextByBlogId(Integer id) throws DBException;
 	
 	/**
 	 * 插入一条博客
@@ -50,5 +68,7 @@ public interface BlogService {
 	 * @return
 	 */
 	int addBlogContent(Integer blogId,String content) throws DBException ;
+	
+	
 	
 }

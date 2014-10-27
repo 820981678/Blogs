@@ -19,7 +19,6 @@ import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.glogs.emu.blog.BType;
-import com.glogs.emu.blog.BlogState;
 import com.glogs.entity.blog.BTag;
 import com.glogs.entity.blog.Blog;
 import com.glogs.init.cache.GlobalCache;
@@ -179,13 +178,25 @@ public class BlogsController extends BaseController {
 	}
 	
 	/**
-	 * 跳转到查看 一条博客
+	 * 查看博客
 	 * 
+	 * @param blogId
 	 * @return
 	 */
 	@RequestMapping(value="/seeBlog.do")
-	public ModelAndView seeBlog(){
+	public ModelAndView seeBlog(@RequestParam(required=false)Integer blogId){
 		ModelAndView model = new ModelAndView();
+		try {
+			Blog blog = blogServiceImpl.queryBlogById(blogId);
+			blog.setBtagName(GlobalCache.getBtagById(blog.getBtagId()).getTagName());
+			
+			String blogText = blogServiceImpl.queryBlogTextByBlogId(blogId);
+			
+			model.addObject("blog", blog);
+			model.addObject("blogText", blogText);
+		} catch (DBException e) {
+			log.error("", e);
+		}
 		
 		model.setViewName("/blogs/see/index");
 		return model;

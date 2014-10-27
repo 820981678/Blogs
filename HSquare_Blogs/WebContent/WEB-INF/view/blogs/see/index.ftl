@@ -7,12 +7,13 @@
 <!-- 本地 -->
 <link href="${webRoot}static/blogs/index/css/index.css" rel="stylesheet" />
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="${webRoot}plug/ueditor/ueditor.parse.min.js"></script>
 
 </head>
 <body>
 	<header id="header" class="header">
 		<div class="title">
-			
+			<#include "/include/include_title.ftl" >
 		</div>
 		<div class="daohang">
 			<div style="width:1080px; height:100%; margin:0px auto; font-size:18px;">
@@ -38,20 +39,29 @@
 	</header>
 	
 	<section id="section" class="section">
-		<div style="width: 870px; height: 700px; float: left; background-color:white;">
+		<div style="width: 870px; height: auto; float: left; background-color:white;">
 			<!-- 文章基本信息 -->
-			<div style="width:100%; height:105px; border-bottom:1px solid #eee; ">
+			<div style="width:100%; height:105px; border-bottom:1px solid #eee; margin-bottom:10px;">
 				<div style="padding: 2px 20px 12px;">
-					<h1 style="color: #444; font-weight: normal; font-size: 24px; line-height: 60px; margin: 5px 0;">二分查找算法及其变体</h1>
+					<h1 style="color: #444; font-weight: normal; font-size: 24px; line-height: 60px; margin: 5px 0;">${blog.title}</h1>
 					<div style="width:100%; height:20px; color:#999; ">
-						<span style="margin-right:15px;">发布人: <span style="color:#00a67c">Apple</span></span>
-						<span style="margin-right:15px;">时间: <span style="color:#00a67c">2014-10-20 12:00:00</span></span>
-						<span style="margin-right:15px;">点击量: <span style="color:#00a67c">100</span></span>
+						<span style="margin-right:15px;">发布人: <span style="color:#00a67c">${blog.userName}</span></span>
+						<span style="margin-right:15px;">时间: <span style="color:#00a67c">${blog.updateTime}</span></span>
+						<span style="margin-right:15px;">点击量: <span style="color:#00a67c">${blog.checkNum}</span></span>
 						<span style="margin-right:15px;">评论: <span style="color:#00a67c">100</span></span>
 						<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>
 					</div>
 				</div>
-				
+			</div>
+			<!-- 广告 -->
+			<div style="width:100%; height:150px; ">
+				<#include "/include/guanggao/include_see.ftl" >
+			</div>
+			<!-- 博客正文 -->
+			<div style="width:100%; height:auto;">
+				<div id="blog" style="padding:10px;">
+					${blogText}
+				</div>
 			</div>
 		</div>
 		
@@ -91,7 +101,14 @@
 	</section>
 	
 	<footer id="footer" class="footer">
-		
+		<#include "/include/include_footer.ftl" >
 	</footer>
+	
+	<script type="text/javascript">
+		//解析博客正文
+		uParse('#blog', {
+		    rootPath: '${webRoot}plug/ueditor'
+		});
+	</script>
 </body>
 </html>
