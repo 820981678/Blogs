@@ -5,15 +5,18 @@
 <title>Happiness Blogs</title>
 
 <!-- 本地 -->
-<link href="static/blogs/index/css/index.css" rel="stylesheet" />
+<link href="../static/blogs/index/css/index.css" rel="stylesheet" />
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="plug/ueditor/ueditor.parse.min.js"></script>
+<script type="text/javascript" src="../plug/ueditor/ueditor.parse.min.js"></script>
 
 </head>
 <body>
 	<header id="header" class="header">
 		<div class="title">
-			
+			<div style="width:1080px; height:100%; margin:0px auto; font-size:18px; text-align:center; line-height:100px; color: white; ">
+				<span style="font-size:55px;">Happiness Blog</span>
+				<span style="font-size:24px;">—分享是最高尚的自私</span>
+			</div>
 		</div>
 		<div class="daohang">
 			<div style="width:1080px; height:100%; margin:0px auto; font-size:18px;">
@@ -46,7 +49,7 @@
 					<h1 style="color: #444; font-weight: normal; font-size: 24px; line-height: 60px; margin: 5px 0;">${blog.title}</h1>
 					<div style="width:100%; height:20px; color:#999; ">
 						<span style="margin-right:15px;">发布人: <span style="color:#00a67c">${blog.userName}</span></span>
-						<span style="margin-right:15px;">时间: <span style="color:#00a67c"></span></span>
+						<span style="margin-right:15px;">时间: <span style="color:#00a67c">${blog.updateTime?string("yyyy-MM-dd HH:mm:ss")}</span></span>
 						<span style="margin-right:15px;">点击量: <span style="color:#00a67c">${blog.checkNum}</span></span>
 						<span style="margin-right:15px;">评论: <span style="color:#00a67c">100</span></span>
 						<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>

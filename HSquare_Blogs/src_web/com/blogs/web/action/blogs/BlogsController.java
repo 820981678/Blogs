@@ -156,7 +156,7 @@ public class BlogsController extends BaseController {
 	 * @param blog
 	 * @param editorValue 文章内容
 	 * @param btags 文章标签 集合
-	 * @return
+	 * @return code 0 正常，1创建静态文件失败，2创建文件夹失败
 	 */
 	@RequestMapping(value="/release.do", method=RequestMethod.POST)
 	@ResponseBody
@@ -175,7 +175,7 @@ public class BlogsController extends BaseController {
 			DBHandle.beginTransation();
 			int _i = blogServiceImpl.add(blog);
 			int _j = blogServiceImpl.addBlogContent(_i, editorValue);
-			DBHandle.commit();
+			
 			map.put("code", _j != 0 ? 0 : 1);
 			
 			//生成静态页面
@@ -184,15 +184,16 @@ public class BlogsController extends BaseController {
 			val.put("blogText", editorValue);
 			blogStatic.createTemplate(val, "index.ftl");
 			
+			DBHandle.commit();
 		} catch (DBException e) {
 			log.error("insert blog error", e);
 			map.put("code", 1);
 		} catch (TemplateException e){
 			log.error("create static template html error", e);
-			map.put("code", 1);
+			map.put("code", 2);
 		} catch(IOException e){
 			log.error("find create DirectoryForTemplateLoading error", e);
-			map.put("code", 1);
+			map.put("code", 3);
 		}finally {
 			DBHandle.release();
 		}

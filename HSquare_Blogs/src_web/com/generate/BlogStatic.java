@@ -46,13 +46,17 @@ public class BlogStatic extends TestCase implements InitializingBean {
 	 * @throws TemplateException 
 	 */
 	public boolean createTemplate(Map<String, Object> root,String template) throws IOException, TemplateException {
-		Template t = cfg.getTemplate(template);
+		//读取模板，设置编码
+		Template t = cfg.getTemplate(template,"UTF-8");
+		t.setEncoding("UTF-8");
 		String templatePath = PropertiesConfigurer.getStringValueByKey("freemarker.static.path");
 		
 		if(!new File(templatePath).exists()){
 			new File(templatePath).mkdirs();
 		}
-		Writer out = new OutputStreamWriter(new FileOutputStream(templatePath + "/TestInclude.html"), "utf-8");
+		
+		String templateFileName = String.valueOf(System.currentTimeMillis()) + ".html";
+		Writer out = new OutputStreamWriter(new FileOutputStream(templatePath + "/" + templateFileName), "UTF-8");
 		t.process(root, out);
 		out.flush();
 		out.close();
