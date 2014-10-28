@@ -63,17 +63,21 @@
 					${blogText}
 				</div>
 			</div>
+			<!-- 点赞 -->
+			<div style="width:100%; height:auto;">
+				
+			</div>
 		</div>
 		
 		<div style="width: 200px; height: 100%; float: left; margin-left: 10px;">
 			<div style="width: 100%; height: 500px; background-color: white; margin-bottom: 10px;">
 				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
 					<li style=" height:40px; line-height:40px; padding-left:10px; font-size:18px; border-bottom:1px solid #eee;">
-						博主资料
+						TA的博客
 					</li>
 				</ul>
 			</div>		
-			<!-- 导航 -->
+			<!-- 阅读排行 -->
 			<div style="width: 100%; height: 350px; background-color: white; margin-bottom: 10px;">
 				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
 					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;  border-bottom:1px solid #eee;">
@@ -86,14 +90,6 @@
 				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
 					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;  border-bottom:1px solid #eee;">
 						猜你喜欢
-					</li>
-				</ul>
-			</div>
-			<!-- 热门排行 -->
-			<div style="width: 100%; height: 350px; background-color: white; margin-bottom: 10px;">
-				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
-					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;  border-bottom:1px solid #eee;">
-						热门排行
 					</li>
 				</ul>
 			</div>

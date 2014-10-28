@@ -19,4 +19,7 @@
 		</property>
 	</bean>
 	
+	<!-- 静态页面生成服务 -->
+	<bean id="blogStatic" class="com.generate.BlogStatic"></bean>
+	
 </beans>

@@ -1,5 +1,6 @@
 package com.blogs.web.action.blogs;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -18,11 +19,14 @@ import com.blogs.web.action.BaseController;
 import com.connection.db.DBException;
 import com.connection.db.DBHandle;
 import com.connection.page.Page;
+import com.generate.BlogStatic;
 import com.glogs.emu.blog.BType;
 import com.glogs.entity.blog.BTag;
 import com.glogs.entity.blog.Blog;
 import com.glogs.init.cache.GlobalCache;
 import com.glogs.service.blog.BlogService;
+
+import freemarker.template.TemplateException;
 
 @RequestMapping(value="/blogs")
 @Controller
@@ -33,6 +37,12 @@ public class BlogsController extends BaseController {
 	 */
 	@Resource
 	private BlogService blogServiceImpl;
+	
+	/**
+	 * 静态页面生成服务
+	 */
+	@Resource
+	private BlogStatic blogStatic;
 	
 	/**
 	 * 跳转到 所有博客页面
@@ -167,10 +177,23 @@ public class BlogsController extends BaseController {
 			int _j = blogServiceImpl.addBlogContent(_i, editorValue);
 			DBHandle.commit();
 			map.put("code", _j != 0 ? 0 : 1);
+			
+			//生成静态页面
+			Map<String, Object> val = new HashMap<String, Object>();
+			val.put("blog", blog);
+			val.put("blogText", editorValue);
+			blogStatic.createTemplate(val, "index.ftl");
+			
 		} catch (DBException e) {
 			log.error("insert blog error", e);
 			map.put("code", 1);
-		} finally {
+		} catch (TemplateException e){
+			log.error("create static template html error", e);
+			map.put("code", 1);
+		} catch(IOException e){
+			log.error("find create DirectoryForTemplateLoading error", e);
+			map.put("code", 1);
+		}finally {
 			DBHandle.release();
 		}
 		
