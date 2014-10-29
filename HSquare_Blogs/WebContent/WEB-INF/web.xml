@@ -53,7 +53,7 @@
 	<!-- 配置欢迎页面 -->
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>/blogs/index</url-pattern>
+		<url-pattern>/blogs</url-pattern>
 	</servlet-mapping>
 	
 	<session-config>
@@ -62,7 +62,7 @@
 	
 	<!-- 欢迎页面 相比前面 servlet-mapping 少了"/" -->
 	<welcome-file-list>
-		<welcome-file>blogs/index</welcome-file>
+		<welcome-file>blogs</welcome-file>
 	</welcome-file-list>
 	
 </web-app>

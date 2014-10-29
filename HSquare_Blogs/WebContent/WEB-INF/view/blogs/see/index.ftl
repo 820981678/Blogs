@@ -28,7 +28,7 @@
 						<a href="" style="padding:13px 20px; color:white;">ABOUT</a>
 					</li>
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
-						<a href="javascript:void(0);" style="padding:13px 20px; color:white; background-color: #1ABC9C"">Hibernate</a>
+						<a href="javascript:void(0);" style="padding:13px 20px; color:white; background-color: #1ABC9C"">${blog.btagName}</a>
 					</li>
 				</ul>
 			</div>

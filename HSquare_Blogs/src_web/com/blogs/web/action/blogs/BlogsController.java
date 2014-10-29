@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,7 +50,7 @@ public class BlogsController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value="/index")
+	@RequestMapping()
 	public ModelAndView index() throws Exception {
 		ModelAndView model = new ModelAndView();
 		//设置文章标签
@@ -167,6 +168,8 @@ public class BlogsController extends BaseController {
 		blog.setCheckNum(0);
 		blog.setCreateTime(new Date());
 		blog.setUpdateTime(new Date());
+		//设置标签名称 用于生成静态html文件使用
+		blog.setBtagName(GlobalCache.getBtagById(blog.getBtagId()).getTagName());
 		// TODO 完成对发布人的设置
 		blog.setUserId(0);
 		blog.setUserName("Apple");
@@ -207,8 +210,8 @@ public class BlogsController extends BaseController {
 	 * @param blogId
 	 * @return
 	 */
-	@RequestMapping(value="/seeBlog")
-	public ModelAndView seeBlog(@RequestParam(required=false)Integer blogId){
+	@RequestMapping(value="/seeBlog/{blogId}")
+	public ModelAndView seeBlog(@PathVariable("blogId")Integer blogId){
 		ModelAndView model = new ModelAndView();
 		try {
 			Blog blog = blogServiceImpl.queryBlogById(blogId);
