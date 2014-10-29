@@ -94,4 +94,10 @@
 		</property>
 	</bean>
 	
+	<mvc:resources location="/static/" mapping="/static/**"/>
+	<mvc:resources location="/plug/" mapping="/plug/**"/>
+	
+	<!-- 异常处理 -->
+	<bean id="exceptionHandler" class="com.blogs.web.action.exception.GlobalControllerExceptionHandler"></bean>
+	
 </beans>

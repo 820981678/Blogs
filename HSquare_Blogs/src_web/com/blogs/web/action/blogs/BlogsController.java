@@ -49,8 +49,8 @@ public class BlogsController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value="/index.do")
-	public ModelAndView index(){
+	@RequestMapping(value="/index")
+	public ModelAndView index() throws Exception {
 		ModelAndView model = new ModelAndView();
 		//设置文章标签
 		List<BTag> global_btag = GlobalCache.global_btag;
@@ -67,7 +67,7 @@ public class BlogsController extends BaseController {
 	 * @param pageSize
 	 * @return
 	 */
-	@RequestMapping(value="/query.do")
+	@RequestMapping(value="/query")
 	public ModelAndView query(
 			@RequestParam(value="pageNo",required=false)Integer pageNo, 
 			@RequestParam(value="pageSize",required=false)Integer pageSize){
@@ -98,7 +98,7 @@ public class BlogsController extends BaseController {
 	 * @param btagId 是否根据 btagid 进行查询
 	 * @return
 	 */
-	@RequestMapping(value="/query_ajax.do")
+	@RequestMapping(value="/query_ajax")
 	@ResponseBody
 	public Map<String, Object> query_ajax(
 			@RequestParam(value="pageNo",required=false)Integer pageNo, 
@@ -138,7 +138,7 @@ public class BlogsController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value="/addBlog.do")
+	@RequestMapping(value="/addBlog")
 	public ModelAndView addBlog(){
 		ModelAndView model = new ModelAndView();
 		//设置文章标签
@@ -158,7 +158,7 @@ public class BlogsController extends BaseController {
 	 * @param btags 文章标签 集合
 	 * @return code 0 正常，1创建静态文件失败，2创建文件夹失败
 	 */
-	@RequestMapping(value="/release.do", method=RequestMethod.POST)
+	@RequestMapping(value="/release", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> release(Blog blog,String editorValue){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -207,7 +207,7 @@ public class BlogsController extends BaseController {
 	 * @param blogId
 	 * @return
 	 */
-	@RequestMapping(value="/seeBlog.do")
+	@RequestMapping(value="/seeBlog")
 	public ModelAndView seeBlog(@RequestParam(required=false)Integer blogId){
 		ModelAndView model = new ModelAndView();
 		try {

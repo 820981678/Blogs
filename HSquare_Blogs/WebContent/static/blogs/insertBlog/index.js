@@ -19,7 +19,7 @@ function sub(){
 	$("#overview").val(arr.join());
 	
 	$.ajax({
-		url: webRoot + 'blogs/release.do',
+		url: webRoot + 'blogs/release',
 		type:'post',
 		data: $("#blogForm").serialize(),
 		dataType:'json',

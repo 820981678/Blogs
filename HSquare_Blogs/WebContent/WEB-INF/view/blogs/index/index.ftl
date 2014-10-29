@@ -31,7 +31,7 @@
 				<a style="position: relative; margin-right:5px; color: #fff; background-color: #d9534f; font-size: 14px; padding: 2px 2px 2px 2px; top:-2px;" href="http://www.cricode.com/category/os/android">
 					{{d.result[i].btagName}}
 				</a>
-				<a href="${webRoot}blogs/seeBlog.do?blogId={{d.result[i].id}}" style="font-weight: normal;" target="_blank" title="">{{d.result[i].title}}</a>
+				<a href="${webRoot}blogs/seeBlog?blogId={{d.result[i].id}}" style="font-weight: normal;" target="_blank" title="">{{d.result[i].title}}</a>
 			</div>
 			<div style="width:auto; line-height:24px; color:#777; font-family: Microsoft Yahei,Helvetica Neue,Helvetica,Arial,sans-serif; font-size: 14px; margin-bottom:10px;">
 				{{d.result[i].overview}}
@@ -58,7 +58,7 @@
 			<div style="width:1080px; height:100%; margin:0px auto; font-size:18px;">
 				<ul style="list-style:none; padding:0px; margin:0px; ">
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
-						<a href="${webRoot}blogs/index.do" style="padding:13px 20px; color:white; background-color: #1ABC9C">HOME</a>
+						<a href="${webRoot}blogs/index" style="padding:13px 20px; color:white; background-color: #1ABC9C">HOME</a>
 					</li>
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
 						<a href="" style="padding:13px 20px; color:white;">TAG</a>
@@ -95,7 +95,7 @@
 					</li>
 					<#list global_btag as btag>
 						<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
-							<a href="javascript:void(0);" onclick="queryBtag('${webRoot}blogs/query_ajax.do?btagId=${btag.id}')">${btag.tagName}</a>
+							<a href="javascript:void(0);" onclick="queryBtag('${webRoot}blogs/query_ajax?btagId=${btag.id}')">${btag.tagName}</a>
 						</li>
 					</#list>
 				</ul>
