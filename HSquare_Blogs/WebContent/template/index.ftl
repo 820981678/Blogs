@@ -106,7 +106,7 @@
 	<script type="text/javascript">
 		//解析博客正文
 		uParse('#blog', {
-		    rootPath: 'plug/ueditor'
+		    rootPath: '../plug/ueditor'
 		});
 	</script>
 </body>

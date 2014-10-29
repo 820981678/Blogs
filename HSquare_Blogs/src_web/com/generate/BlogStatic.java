@@ -82,7 +82,7 @@ public class BlogStatic extends TestCase implements InitializingBean {
 		int year = calendar.get(Calendar.YEAR);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		
-		String directory = PropertiesConfigurer.getStringValueByKey("freemarker.static.path") + year + month;
+		String directory = PropertiesConfigurer.getStringValueByKey("freemarker.static.path") + "/" + year + month;
 		File dir = new File(directory);
 		if(!dir.exists()){
 			dir.mkdirs();
