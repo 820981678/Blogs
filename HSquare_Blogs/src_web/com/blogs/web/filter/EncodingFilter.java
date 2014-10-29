@@ -53,6 +53,7 @@ public class EncodingFilter extends CharacterEncodingFilter {
             logger.info(LogsUtil.PREFIX3 + LogsUtil.debugInfo("encoding", this.encoding));
             logger.info(LogsUtil.PREFIX3 + LogsUtil.debugInfo("excludePath", this.excludePath));
             logger.info(LogsUtil.PREFIX3 + LogsUtil.debugInfo("forceEncoding", this.forceEncoding));
+            logger.info(LogsUtil.PREFIX3 + "EncodingFilter init is complete");
         }
     }
 

@@ -222,7 +222,7 @@ public class BlogsController extends BaseController {
 			model.addObject("blog", blog);
 			model.addObject("blogText", blogText);
 		} catch (DBException e) {
-			log.error("", e);
+			log.error("select blogText is error", e);
 		}
 		
 		model.setViewName("/blogs/see/index");
