@@ -118,11 +118,11 @@ public class BolgServiceImpl implements BlogService {
 	public int add(Blog blog) throws DBException {
 		StringBuffer sql = new StringBuffer();
 		sql.append("INSERT INTO ").append(Blog.DB_NAME);
-		sql.append("(TITLE,OVERVIEW,BTAGID,BTYPE,USERID,USERNAME,CREATETIME,UPDATETIME,CHECKNUM,STATE) VALUES(?,?,?,?,?,?,?,?,?,?)");
+		sql.append("(TITLE,OVERVIEW,BTAGID,BTYPE,USERID,USERNAME,CREATETIME,UPDATETIME,CHECKNUM,STATE,TEMPLATE) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 		Object[] params = new Object[]{
 			blog.getTitle(),blog.getOverview(),blog.getBtagId(),blog.getBtype(),
 			blog.getUserId(),blog.getUserName(),blog.getCreateTime(),blog.getUpdateTime(),
-			blog.getCheckNum(),blog.getState()
+			blog.getCheckNum(),blog.getState(),blog.getTemplate()
 		};
 		int code = DBHandle.exceute(sql.toString(), params);
 		int backId = 0;

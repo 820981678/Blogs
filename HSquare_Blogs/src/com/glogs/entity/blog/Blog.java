@@ -81,6 +81,11 @@ public class Blog {
 	 * 状态 对应BlogState枚举
 	 */
 	private Integer state;
+	
+	/**
+	 * 生成静态html文件地址
+	 */
+	private String template;
 
 	/**
 	 * id
@@ -296,6 +301,22 @@ public class Blog {
 	 */
 	public void setState(Integer state) {
 		this.state = state;
+	}
+	
+	/**
+	 * 生成静态html文件地址
+	 * @return
+	 */
+	public String getTemplate() {
+		return template;
+	}
+
+	/**
+	 * 生成静态html文件地址
+	 * @return
+	 */
+	public void setTemplate(String template) {
+		this.template = template;
 	}
 	
 }

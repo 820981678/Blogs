@@ -175,18 +175,19 @@ public class BlogsController extends BaseController {
 		blog.setUserName("Apple");
 		
 		try {
+			//生成静态页面
+			Map<String, Object> val = new HashMap<String, Object>();
+			val.put("blog", blog);
+			val.put("blogText", editorValue);
+			String templatePath = blogStatic.createTemplate(val, "index.ftl");
+			//设置html静态文件地址
+			blog.setTemplate(templatePath);
+			
 			DBHandle.beginTransation();
 			int _i = blogServiceImpl.add(blog);
 			int _j = blogServiceImpl.addBlogContent(_i, editorValue);
 			
 			map.put("code", _j != 0 ? 0 : 1);
-			
-			//生成静态页面
-			Map<String, Object> val = new HashMap<String, Object>();
-			val.put("blog", blog);
-			val.put("blogText", editorValue);
-			blogStatic.createTemplate(val, "index.ftl");
-			
 			DBHandle.commit();
 		} catch (DBException e) {
 			log.error("insert blog error", e);
