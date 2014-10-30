@@ -15,8 +15,11 @@ function sub(){
 	//初始化提交表单
 	var arr = [];
     arr.push(UE.getEditor('editor').getContentTxt());
-    alert(arr.join());
-	$("#overview").val(arr.join());
+    var overview = arr.join();
+    if(overview.length > 200){
+    	overview = overview.substring(0,190);
+    } 
+	$("#overview").val(overview);
 	
 	$.ajax({
 		url: webRoot + 'blogs/release',
