@@ -2,6 +2,8 @@ package com.glogs.init.cache.inter;
 
 import org.apache.log4j.Logger;
 
+import com.glogs.util.GlobalLogger;
+
 /**
  * 全局公共对象缓存 初始化接口
  * 
@@ -12,7 +14,7 @@ import org.apache.log4j.Logger;
  */
 public interface CacheInit {
 	
-	final Logger log = Logger.getLogger("init.global");
+	final Logger log = GlobalLogger.init_global;
 	
 	void init();
 	

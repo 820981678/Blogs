@@ -61,7 +61,10 @@ $(function(){
 	});
 });
 
-//渲染js模板
+/**
+ * 渲染js模板
+ * @param data
+ */
 function view(data){
 	//获取模板渲染的数据
 	var list = data.page;
@@ -71,7 +74,9 @@ function view(data){
 	});
 }
 
-//重新计算父页面高度
+/**
+ * 重新计算父页面高度
+ */
 function createParentHeight(){
 	//重新设置父页面iframe的高度,便于自适应该页面高度
 	$("#iframe",window.parent.document).height(0);
@@ -79,7 +84,10 @@ function createParentHeight(){
 	parent.initHeight(height);
 }
 
-//设置分页项
+/**
+ * 设置分页项
+ * @param data
+ */
 function nextpage(data){
 	nextPage = data.page.nextPage;
 	pageSize = data.page.pageSize;
@@ -119,6 +127,10 @@ $(function(){
 	});
 });
 
+/**
+ * 标签点击事件
+ * @param URL
+ */
 function queryBtag(URL){
 	$.ajax({
 		url: URL,

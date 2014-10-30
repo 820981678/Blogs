@@ -25,6 +25,7 @@ import com.glogs.emu.blog.BType;
 import com.glogs.entity.blog.BTag;
 import com.glogs.entity.blog.Blog;
 import com.glogs.init.cache.GlobalCache;
+import com.glogs.runservice.checknum.CheckNumService;
 import com.glogs.service.blog.BlogService;
 
 import freemarker.template.TemplateException;
@@ -44,6 +45,12 @@ public class BlogsController extends BaseController {
 	 */
 	@Resource
 	private BlogStatic blogStatic;
+	
+	/**
+	 * 博客点击量服务
+	 */
+	@Resource
+	private CheckNumService checkNumService;
 	
 	/**
 	 * 跳转到 所有博客页面
@@ -71,7 +78,7 @@ public class BlogsController extends BaseController {
 	@RequestMapping(value="/query")
 	public ModelAndView query(
 			@RequestParam(value="pageNo",required=false)Integer pageNo, 
-			@RequestParam(value="pageSize",required=false)Integer pageSize){
+			@RequestParam(value="pageSize",required=false)Integer pageSize) throws DBException {
 		
 		ModelAndView model = new ModelAndView();
 		//初始化分页参数
@@ -85,6 +92,7 @@ public class BlogsController extends BaseController {
 			System.out.println(page);
 		} catch (DBException e) {
 			log.error("find query error", e);
+			throw e;
 		}
 		model.addObject("page", page);
 		model.setViewName("/blogs/index/index");
@@ -104,7 +112,7 @@ public class BlogsController extends BaseController {
 	public Map<String, Object> query_ajax(
 			@RequestParam(value="pageNo",required=false)Integer pageNo, 
 			@RequestParam(value="pageSize",required=false)Integer pageSize,
-			@RequestParam(required=false)Integer btagId ){
+			@RequestParam(required=false)Integer btagId ) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		//初始化分页参数
@@ -140,7 +148,7 @@ public class BlogsController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value="/addBlog")
-	public ModelAndView addBlog(){
+	public ModelAndView addBlog() throws Exception {
 		ModelAndView model = new ModelAndView();
 		//设置文章标签
 		model.addObject("btag", GlobalCache.global_btag);
@@ -175,17 +183,20 @@ public class BlogsController extends BaseController {
 		blog.setUserName("Apple");
 		
 		try {
-			//生成静态页面
-			Map<String, Object> val = new HashMap<String, Object>();
-			val.put("blog", blog);
-			val.put("blogText", editorValue);
-			String templatePath = blogStatic.createTemplate(val, "index.ftl");
 			//设置html静态文件地址
-			blog.setTemplate(templatePath);
+			blog.setTemplate(blogStatic.validatePath());
 			
 			DBHandle.beginTransation();
 			int _i = blogServiceImpl.add(blog);
 			int _j = blogServiceImpl.addBlogContent(_i, editorValue);
+			
+			//设置插入数据库后 blog的id, 用于在模板上生成id
+			blog.setId(_i);
+			//生成静态页面
+			Map<String, Object> val = new HashMap<String, Object>();
+			val.put("blog", blog);
+			val.put("blogText", editorValue);
+			blogStatic.createTemplate(val, "index.ftl");
 			
 			map.put("code", _j != 0 ? 0 : 1);
 			DBHandle.commit();
@@ -212,7 +223,7 @@ public class BlogsController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value="/seeBlog/{blogId}")
-	public ModelAndView seeBlog(@PathVariable("blogId")Integer blogId){
+	public ModelAndView seeBlog(@PathVariable("blogId")Integer blogId) throws DBException {
 		ModelAndView model = new ModelAndView();
 		try {
 			Blog blog = blogServiceImpl.queryBlogById(blogId);
@@ -224,10 +235,35 @@ public class BlogsController extends BaseController {
 			model.addObject("blogText", blogText);
 		} catch (DBException e) {
 			log.error("select blogText is error", e);
+			throw e;
 		}
 		
 		model.setViewName("/blogs/see/index");
 		return model;
+	}
+	
+	/**
+	 * 查询博客点击量,并对博客点击量 进行了自增长
+	 * 
+	 * @param blogId
+	 * @return
+	 */
+	@RequestMapping(value="/queryBolgCheckNum")
+	@ResponseBody
+	public Map<String, Object> queryBolgCheckNum(int blogId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			int num = checkNumService.getCheckNum(blogId);
+			map.put("code", 0);
+			map.put("checkNum", num);
+		} catch(DBException e){
+			log.error("query blog checkNum error is DBservice", e);
+			map.put("code", 1);
+		} catch (Exception e) {
+			log.error("query blog checkNum error is cache", e);
+			map.put("code", 1);
+		}
+		return map;
 	}
 	
 }

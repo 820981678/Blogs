@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+import com.glogs.util.GlobalLogger;
 import com.util.LogHandle;
 import com.util.LogsUtil;
 import com.util.StringUtil;
@@ -42,7 +43,7 @@ public class EncodingFilter extends CharacterEncodingFilter {
     private String excludePath = "";
 
     // 日志记录器.
-    public static final Logger logger = LogHandle.getLogger("web.filters");
+    public static final Logger logger = GlobalLogger.init_filter;
 
     @Override
     protected void initFilterBean() throws ServletException {

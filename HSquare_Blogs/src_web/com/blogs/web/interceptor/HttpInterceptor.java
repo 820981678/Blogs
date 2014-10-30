@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.glogs.util.GlobalLogger;
 import com.glogs.util.PublicKey;
 import com.util.StringUtil;
 
@@ -18,7 +19,7 @@ import com.util.StringUtil;
  */
 public class HttpInterceptor implements HandlerInterceptor {
 	
-	private Logger log = Logger.getLogger("interceptor");
+	private static Logger log = GlobalLogger.interceptor;
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object arg2) throws Exception {

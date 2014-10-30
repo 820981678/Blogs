@@ -8,6 +8,27 @@
 <link href="../static/blogs/index/css/index.css" rel="stylesheet" />
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="../plug/ueditor/ueditor.parse.min.js"></script>
+<script type="text/javascript">
+/**
+ * ajax查询博客点击量
+ * @param id
+ */
+$(function(){
+	$.ajax({
+		url: "../blogs/queryBolgCheckNum",
+		type: 'post',
+		data: {"blogId":$("#checkNum").html()},
+		dataType: 'json',
+		success: function(data){
+			if(data.code != 0){
+				$("#checkNum").html("Load error");
+			}else{
+				$("#checkNum").html(data.checkNum);
+			}
+		}
+	});
+});
+</script>
 
 </head>
 <body>
@@ -50,7 +71,7 @@
 					<div style="width:100%; height:20px; color:#999; ">
 						<span style="margin-right:15px;">发布人: <span style="color:#00a67c">${blog.userName}</span></span>
 						<span style="margin-right:15px;">时间: <span style="color:#00a67c">${blog.updateTime?string("yyyy-MM-dd HH:mm:ss")}</span></span>
-						<span style="margin-right:15px;">点击量: <span style="color:#00a67c">${blog.checkNum}</span></span>
+						<span style="margin-right:15px;">点击量: <span id="checkNum" style="color:#00a67c">${blog.id}</span></span>
 						<span style="margin-right:15px;">评论: <span style="color:#00a67c">100</span></span>
 						<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>
 					</div>

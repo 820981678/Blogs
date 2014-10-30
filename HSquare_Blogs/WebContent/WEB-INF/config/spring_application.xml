@@ -11,15 +11,4 @@
 		<property name="dbProperties" ref="propertiesConfigurer" />
 	</bean>
 	
-	<bean id="globalCache" class="com.glogs.init.cache.GlobalCache">
-		<property name="cacheInit">
-			<list>
-				<bean id="bTag" class="com.glogs.init.cache.inter.impl.BTagInitImpl"></bean>
-			</list>
-		</property>
-	</bean>
-	
-	<!-- 静态页面生成服务 -->
-	<bean id="blogStatic" class="com.generate.BlogStatic"></bean>
-	
 </beans>

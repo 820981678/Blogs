@@ -7,6 +7,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
+import com.glogs.util.GlobalLogger;
 import com.inter.DbProperties;
 import com.util.LogsUtil;
 
@@ -17,7 +18,7 @@ public class PropertiesConfigurer extends PropertyPlaceholderConfigurer implemen
 	 */
 	private static Properties properties;
 	
-	protected static final Logger logger = Logger.getLogger("init.properties");
+	protected static final Logger logger = GlobalLogger.init_properties;
 	
 	private PropertiesConfigurer(){
 		super();

@@ -31,7 +31,6 @@ import com.connection.page.Page;
 import com.inter.DbProperties;
 import com.sun.rowset.CachedRowSetImpl;
 import com.util.DBUtil;
-import com.util.LogHandle;
 import com.util.LogsUtil;
 import com.util.ObjectUtil;
 import com.util.StringUtil;
@@ -81,7 +80,7 @@ public final class DBHandle {
     /**
      * 日志记录器.
      */
-    protected static final Logger logger = LogHandle.getLogger("web.interce");
+    protected static final Logger logger = Logger.getLogger("init.db");
 
     /**
      * 私有构造方法, 禁止实例化.

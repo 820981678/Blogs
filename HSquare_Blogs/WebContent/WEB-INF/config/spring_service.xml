@@ -2,6 +2,38 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
 
+	<!-- 全局缓存初始化服务 -->
+	<bean id="globalCache" class="com.glogs.init.cache.GlobalCache">
+		<property name="cacheInit">
+			<list>
+				<bean id="bTag" class="com.glogs.init.cache.inter.impl.BTagInitImpl"></bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 静态页面生成服务 -->
+	<bean id="blogStatic" class="com.generate.BlogStatic"></bean>
+	
+	<!-- 博客点击量,定时更新数据库服务 -->
+	<bean name="checkNumServiceTask" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.glogs.runservice.checknum.CheckNumService" />
+		<property name="durability" value="true" /> <!-- durability 表示任务完成之后是否依然保留到数据库，默认false -->
+	</bean>
+	<bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">  
+		<property name="jobDetail" ref="checkNumServiceTask" />
+		<property name="startDelay" value="0" /><!-- 调度工厂实例化后，经过0秒开始执行调度 -->
+		<property name="repeatInterval" value="2000" /><!-- 每2秒调度一次 -->
+	</bean>
+	
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">  
+			<list>  
+				<ref bean="simpleTrigger" />
+			</list>  
+		</property>  
+	</bean> 
+
+	<!-- DB数据库服务 -->
 	<bean id="blogServiceImpl" class="com.glogs.service.blog.impl.BolgServiceImpl"></bean>
 	
 </beans>

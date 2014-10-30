@@ -7,6 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 import com.glogs.entity.blog.BTag;
 import com.glogs.init.cache.inter.CacheInit;
+import com.glogs.util.GlobalLogger;
 import com.util.LogsUtil;
 
 /**
@@ -32,7 +33,7 @@ public class GlobalCache implements InitializingBean {
 	/**
 	 * 日志记录器
 	 */
-	protected final Logger log = Logger.getLogger("init.global");
+	protected final Logger log = GlobalLogger.init_global;
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {

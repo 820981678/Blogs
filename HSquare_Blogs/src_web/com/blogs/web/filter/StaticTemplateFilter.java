@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.Writer;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 
 import com.glogs.init.properties.PropertiesConfigurer;
-import com.util.LogHandle;
+import com.glogs.util.GlobalLogger;
 import com.util.LogsUtil;
 
 public class StaticTemplateFilter implements Filter {
 	
 	// 日志记录器.
-    public static final Logger logger = LogHandle.getLogger("web.filters");
+    public static final Logger logger = GlobalLogger.init_filter;
 
 	@Override
 	public void destroy() {

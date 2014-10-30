@@ -32,6 +32,11 @@ public class BlogStatic extends TestCase implements InitializingBean {
 	
 	private Configuration cfg;
 	
+	/**
+	 * 存放当前线程 生成html静态文件 作用于a标签的路径
+	 */
+	private ThreadLocal<String> templatePathLoacl = new ThreadLocal<String>();
+	
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		cfg = new Configuration();
@@ -43,34 +48,31 @@ public class BlogStatic extends TestCase implements InitializingBean {
 	/**
 	 * 生成静态模板
 	 * 
-	 * @return 返回存入数据库的文件地址
+	 * @return 
 	 * @throws IOException 
 	 * @throws TemplateException 
 	 */
-	public String createTemplate(Map<String, Object> root,String template) throws IOException, TemplateException {
+	public void createTemplate(Map<String, Object> root,String template) throws IOException, TemplateException {
 		//读取模板，设置编码
 		Template t = cfg.getTemplate(template,"UTF-8");
 		t.setEncoding("UTF-8");
 		
 		String templatePath = PropertiesConfigurer.getStringValueByKey("freemarker.static.path");
-		String directory = validatePath();
-		
-		String templateFileName = directory + "/" + String.valueOf(System.currentTimeMillis()) + ".html";
+		String directory = templatePathLoacl.get();
 		
 		Writer out = null;
 		try{
-			out = new OutputStreamWriter(new FileOutputStream(templatePath + templateFileName), "UTF-8");
+			out = new OutputStreamWriter(new FileOutputStream(templatePath + directory), "UTF-8");
 			t.process(root, out);
 		} finally{
 			out.flush();
 			out.close();
 		}
 		
-		return templateFileName;
 	}
 	
 	/**
-	 * 静态html文件夹存放路径 校验<br/>
+	 * 创建html静态文件存放路径<br/>
 	 * 不存在则创建
 	 * 
 	 * @return 返回创建的文件夹路径<br/>
@@ -82,13 +84,16 @@ public class BlogStatic extends TestCase implements InitializingBean {
 		int year = calendar.get(Calendar.YEAR);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		
+		String templateFileName = "" + year + month + "/" + String.valueOf(System.currentTimeMillis()) + ".html";
+		
 		String directory = PropertiesConfigurer.getStringValueByKey("freemarker.static.path") + year + month;
 		File dir = new File(directory);
 		if(!dir.exists()){
 			dir.mkdirs();
 		}
-		
-		return "" + year + month;
+		//设置当前线程产生的 路径地址
+		templatePathLoacl.set(templateFileName);
+		return templateFileName;
 	}
 	
 }
