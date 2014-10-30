@@ -14,4 +14,6 @@ public class GlobalLogger {
 	
 	public static Logger controller = Logger.getLogger("controller");
 	
+	public static Logger task_checknum = Logger.getLogger("task.checknum");
+	
 }

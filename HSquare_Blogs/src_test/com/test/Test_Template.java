@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
-public class Test extends TestCase {
+public class Test_Template extends TestCase {
 
 	private Configuration cfg;
 
@@ -25,7 +25,7 @@ public class Test extends TestCase {
 	}
 
 	public static void main(String[] args) throws Exception {
-		Test obj = new Test();
+		Test_Template obj = new Test_Template();
 		obj.init();
 		Map root = new HashMap();
 		Template t = obj.getCfg().getTemplate("index.ftl");

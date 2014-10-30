@@ -58,7 +58,7 @@ public interface BlogService {
 	 * @param blog
 	 * @return
 	 */
-	int add(Blog blog) throws DBException ;
+	int add(Blog blog) throws DBException;
 	
 	/**
 	 * 插入博客的内容
@@ -67,8 +67,14 @@ public interface BlogService {
 	 * @param content 博客内容
 	 * @return
 	 */
-	int addBlogContent(Integer blogId,String content) throws DBException ;
+	int addBlogContent(Integer blogId,String content) throws DBException;
 	
-	
-	
+	/**
+	 * 更新博客的点击量
+	 * 
+	 * @param blogId
+	 * @param checkNum
+	 * @return
+	 */
+	int updateCheckNum(Integer blogId,Integer checkNum) throws DBException;
 }
