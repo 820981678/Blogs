@@ -33,7 +33,7 @@
 				</a>
 				<a href="{{d.result[i].template}}" style="font-weight: normal;" target="_blank" title="{{d.result[i].title}}" >{{d.result[i].title}}</a>
 			</div>
-			<div style="width:auto; line-height:24px; color:#777; font-family: Microsoft Yahei,Helvetica Neue,Helvetica,Arial,sans-serif; font-size: 14px; margin-bottom:10px;">
+			<div style="width:auto; line-height:24px; color:#777; font-family: Microsoft Yahei,Helvetica Neue,Helvetica,Arial,sans-serif; font-size: 14px; margin-bottom:10px; word-wrap:break-word; word-break:break-all;">
 				{{d.result[i].overview}}
 			</div>
 			<div style="width:auto; height:30px; line-height:30px;  color:#999; text-align:right;">

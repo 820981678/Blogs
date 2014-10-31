@@ -83,7 +83,7 @@ $(function(){
 			</div>
 			<!-- 博客正文 -->
 			<div style="width:100%; height:auto;">
-				<div id="blog" style="padding:10px;">
+				<div id="blog" style="padding:10px; word-wrap:break-word; word-break:break-all;">
 					${blogText}
 				</div>
 			</div>
