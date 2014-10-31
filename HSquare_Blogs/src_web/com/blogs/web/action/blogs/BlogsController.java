@@ -25,6 +25,7 @@ import com.glogs.emu.blog.BType;
 import com.glogs.entity.blog.BTag;
 import com.glogs.entity.blog.Blog;
 import com.glogs.init.cache.GlobalCache;
+import com.glogs.runservice.checknum.CheckNumService;
 import com.glogs.service.blog.BlogService;
 
 import freemarker.template.TemplateException;
@@ -44,6 +45,12 @@ public class BlogsController extends BaseController {
 	 */
 	@Resource
 	private BlogStatic blogStatic;
+	
+	/**
+	 * 博客点击量服务
+	 */
+	@Resource
+	private CheckNumService checkNumService;
 	
 	/**
 	 * 跳转到 所有博客页面
@@ -233,6 +240,30 @@ public class BlogsController extends BaseController {
 		
 		model.setViewName("/blogs/see/index");
 		return model;
+	}
+	
+	/**
+	 * 查询博客点击量,并对博客点击量 进行了自增长
+	 * 
+	 * @param blogId
+	 * @return
+	 */
+	@RequestMapping(value="/queryBolgCheckNum")
+	@ResponseBody
+	public Map<String, Object> queryBolgCheckNum(int blogId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			int num = checkNumService.getCheckNum(blogId);
+			map.put("code", 0);
+			map.put("checkNum", num);
+		} catch(DBException e){
+			log.error("query blog checkNum error is DBservice", e);
+			map.put("code", 1);
+		} catch (Exception e) {
+			log.error("query blog checkNum error is cache", e);
+			map.put("code", 1);
+		}
+		return map;
 	}
 	
 }

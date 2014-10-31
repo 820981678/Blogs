@@ -24,10 +24,19 @@ public class StaticTemplateFilter implements Filter {
 	
 	// 日志记录器.
     public static final Logger logger = GlobalLogger.init_filter;
-
+    
 	@Override
 	public void destroy() {
 		
+	}
+	
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {
+		if (logger.isInfoEnabled()) {
+            logger.info(LogsUtil.LINE);
+            logger.info(LogsUtil.PREFIX2 + "StaticTemplateFilter init ...");
+            logger.info(LogsUtil.PREFIX3 + "StaticTemplateFilter init... is complete");
+        }
 	}
 
 	@Override
@@ -58,13 +67,4 @@ public class StaticTemplateFilter implements Filter {
 		//chain.doFilter(request, response);
 	}
 
-	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-		if (logger.isInfoEnabled()) {
-            logger.info(LogsUtil.LINE);
-            logger.info(LogsUtil.PREFIX2 + "StaticTemplateFilter init ...");
-            logger.info(LogsUtil.PREFIX3 + "StaticTemplateFilter init... is complete");
-        }
-	}
-	
 }

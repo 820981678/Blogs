@@ -39,9 +39,9 @@
 			<div style="width:auto; height:30px; line-height:30px;  color:#999; text-align:right;">
 				<span style="margin-right:15px;">发布人: <span style="color:#00a67c">{{d.result[i].userName}}</span></span>
 				<span style="margin-right:15px;">时间: <span style="color:#00a67c">{{= new Date(d.result[i].createTime).format('yyyy-MM-dd hh:mm:ss') }}</span></span>
-				<!--<span style="margin-right:15px;">点击量: <span style="color:#00a67c">{{d.result[i].checkNum}}</span></span>
+				<span style="margin-right:15px;">点击量: <span style="color:#00a67c">{{d.result[i].checkNum}}</span></span>
 				<span style="margin-right:15px;">评论: <span style="color:#00a67c">100</span></span>
-				<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>-->
+				<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>
 			</div>
 		</div>
 	</div>
