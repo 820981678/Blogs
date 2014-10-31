@@ -28,7 +28,7 @@ import org.apache.commons.dbutils.handlers.ScalarHandler;
 import org.apache.log4j.Logger;
 
 import com.connection.page.Page;
-import com.inter.DbProperties;
+import com.inter.PropertiesSource;
 import com.sun.rowset.CachedRowSetImpl;
 import com.util.DBUtil;
 import com.util.LogsUtil;
@@ -70,7 +70,7 @@ public final class DBHandle {
     /**
      * 获取dbhandle配置文件接口
      */
-    private DbProperties dbProperties;
+    private PropertiesSource propertiesSource;
 
 	/**
      * 数据库配置文件 由DbProperties接口负责注入
@@ -99,7 +99,7 @@ public final class DBHandle {
         logger.info(LogsUtil.PREFIX3 + LogsUtil.debugInfo("configPaths", configPaths));
         
         //注入dbhandle配置文件
-        dbProper = dbProperties.getDbProperties();
+        dbProper = propertiesSource.getProperties();
 
         // 判断当前是否提供多个有效的数据库连接池自定义配置文件进行初始化.
         if (!ObjectUtil.isEmpty(this.configPaths)) {
@@ -888,8 +888,8 @@ public final class DBHandle {
         super.finalize();
     }
     
-    public void setDbProperties(DbProperties dbProperties) {
-		this.dbProperties = dbProperties;
+    public void setPropertiesSource(PropertiesSource propertiesSource) {
+		this.propertiesSource = propertiesSource;
 	}
     
     /**

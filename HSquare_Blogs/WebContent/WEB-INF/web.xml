@@ -15,6 +15,7 @@
 			classpath*:../config/spring_service.xml
 			
 			classpath*:com/glogs/init/**/spring_*.xml
+			classpath*:com/**/comon_*_beans.xml<!-- 加载定时任务 -->
 		</param-value>
 	</context-param>
 	

@@ -8,7 +8,7 @@
 				<value>default</value>
 			</set>
 		</property>
-		<property name="dbProperties" ref="propertiesConfigurer" />
+		<property name="propertiesSource" ref="propertiesConfigurer" />
 	</bean>
 	
 </beans>

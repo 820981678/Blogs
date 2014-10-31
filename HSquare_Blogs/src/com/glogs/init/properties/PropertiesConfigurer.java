@@ -8,10 +8,10 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
 import com.glogs.util.GlobalLogger;
-import com.inter.DbProperties;
+import com.inter.PropertiesSource;
 import com.util.LogsUtil;
 
-public class PropertiesConfigurer extends PropertyPlaceholderConfigurer implements DbProperties {
+public class PropertiesConfigurer extends PropertyPlaceholderConfigurer implements PropertiesSource {
 	
 	/**
 	 * 全局properties配置文件对象持有
@@ -61,15 +61,9 @@ public class PropertiesConfigurer extends PropertyPlaceholderConfigurer implemen
 		return properties.getProperty(key);
 	}
 
-	public static Properties getProperties() {
+	@Override
+	public Properties getProperties() {
 		return properties;
 	}
 
-	/**
-	 * 实现DbProperties接口获取properties对象
-	 */
-	public Properties getDbProperties() {
-		return properties;
-	}
-	
 }

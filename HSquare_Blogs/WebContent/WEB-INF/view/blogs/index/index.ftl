@@ -36,12 +36,12 @@
 			<div style="width:auto; line-height:24px; color:#777; font-family: Microsoft Yahei,Helvetica Neue,Helvetica,Arial,sans-serif; font-size: 14px; margin-bottom:10px;">
 				{{d.result[i].overview}}
 			</div>
-			<div style="width:auto; height:30px; line-height:30px;  color:#999;">
+			<div style="width:auto; height:30px; line-height:30px;  color:#999; text-align:right;">
 				<span style="margin-right:15px;">发布人: <span style="color:#00a67c">{{d.result[i].userName}}</span></span>
 				<span style="margin-right:15px;">时间: <span style="color:#00a67c">{{= new Date(d.result[i].createTime).format('yyyy-MM-dd hh:mm:ss') }}</span></span>
-				<span style="margin-right:15px;">点击量: <span style="color:#00a67c">{{d.result[i].checkNum}}</span></span>
+				<!--<span style="margin-right:15px;">点击量: <span style="color:#00a67c">{{d.result[i].checkNum}}</span></span>
 				<span style="margin-right:15px;">评论: <span style="color:#00a67c">100</span></span>
-				<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>
+				<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>-->
 			</div>
 		</div>
 	</div>

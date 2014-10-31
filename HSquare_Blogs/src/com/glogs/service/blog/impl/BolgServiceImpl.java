@@ -162,7 +162,7 @@ public class BolgServiceImpl implements BlogService {
 	public int updateCheckNum(Integer blogId, Integer checkNum) throws DBException {
 		StringBuffer sql = new StringBuffer();
 		sql.append("UPDATE ").append(Blog.DB_NAME);
-		sql.append(" SET CHECKNUM=CHECKNUM + ?").append(" WHERE ID=?");
+		sql.append(" SET CHECKNUM=?").append(" WHERE ID=?");
 		
 		Object[] params = {
 			checkNum,blogId
