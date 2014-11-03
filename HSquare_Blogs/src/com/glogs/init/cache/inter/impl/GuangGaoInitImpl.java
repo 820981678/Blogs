@@ -7,7 +7,7 @@ public class GuangGaoInitImpl implements CacheInit {
 
 	@Override
 	public void init() {
-		log.info(LogsUtil.PREFIX2 + "BTag Load ...");
+		log.info(LogsUtil.PREFIX2 + "GuangGao Load ...");
 		
 	}
 

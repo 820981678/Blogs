@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
+import com.glogs.init.cache.GlobalCache;
 import com.glogs.init.properties.PropertiesConfigurer;
 import com.glogs.util.GlobalLogger;
 import com.util.LogsUtil;
@@ -44,6 +45,9 @@ public class StaticTemplateFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest)arg0;
 		String servletPath = request.getServletPath();
+		if(!discharged(servletPath)){
+			chain.doFilter(arg0, response);
+		}
 		String htmlPath = PropertiesConfigurer.getStringValueByKey("freemarker.static.path") + servletPath;
 		InputStreamReader inr = new InputStreamReader(new FileInputStream(htmlPath),"UTF-8");
 		
@@ -65,6 +69,19 @@ public class StaticTemplateFilter implements Filter {
 			out.close();
 		}
 		//chain.doFilter(request, response);
+	}
+	
+	/**
+	 * 判断是否需要进行拦截
+	 * 
+	 * @param requestPath
+	 * @return 需要拦截返回 true
+	 */
+	private boolean discharged(String requestPath){
+		if(GlobalCache.global_discharged.contains(requestPath)){
+			return false;
+		}
+		return true;
 	}
 
 }

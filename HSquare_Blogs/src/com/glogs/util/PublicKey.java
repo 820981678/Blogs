@@ -34,4 +34,10 @@ public class PublicKey {
 	 * 日志开始
 	 */
 	public static final String LOG_TITLE = "|---------------------------------------------------------";
+	
+	/**
+	 * 放行html请求 配置文件key
+	 */
+	public static final String DISCHARGED_HTML = "discharged.html";
+	
 }

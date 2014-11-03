@@ -1,6 +1,10 @@
 package com.glogs.init.cache;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
@@ -31,6 +35,16 @@ public class GlobalCache implements InitializingBean {
 	public static List<BTag> global_btag;
 	
 	/**
+	 * 全局热门文章集合,key为文章title value为文章地址
+	 */
+	public static List<Map<String, Object>> global_hotBlog;
+	
+	/**
+	 * 全局放行html请求集合
+	 */
+	public static Set<String> global_discharged;
+	
+	/**
 	 * 日志记录器
 	 */
 	protected final Logger log = GlobalLogger.init_global;
@@ -55,6 +69,23 @@ public class GlobalCache implements InitializingBean {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * 随机抽取20条 热门文章
+	 * 
+	 * @return
+	 */
+	public static List<Map<String, Object>> getHotBlog(){
+		if(global_hotBlog.size() <= 20){
+			return global_hotBlog;
+		}
+		
+		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
+		for (int i = 0; i < 20; i++) {
+			result.add(global_hotBlog.get(i));
+		}
+		return result;
 	}
 	
 	/*get  set */

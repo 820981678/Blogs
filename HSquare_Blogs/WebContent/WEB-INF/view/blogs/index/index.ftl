@@ -28,7 +28,7 @@
 		<div style="padding: 20px 15px 10px 20px;">
 			<!-- title -->
 			<div style="width:auto; height:30px; line-height:30px; font-size:18px; color:#1ABC9C; margin-bottom:10px;">
-				<a style="position: relative; margin-right:5px; color: #fff; background-color: #d9534f; font-size: 14px; padding: 2px 2px 2px 2px; top:-2px;" href="http://www.cricode.com/category/os/android">
+				<a style="position: relative; margin-right:5px; color: #fff; background-color: #d9534f; font-size: 14px; padding: 2px 2px 2px 6px; top:-2px;" href="http://www.cricode.com/category/os/android">
 					{{d.result[i].btagName}}
 				</a>
 				<a href="{{d.result[i].template}}" style="font-weight: normal;" target="_blank" title="{{d.result[i].title}}" >{{d.result[i].title}}</a>
@@ -47,6 +47,13 @@
 	</div>
 	{{# } }}
 </script>
+<script id="hotblog" type="text/html">
+	{{# for(var i = 0; i < d.length; i++){ }}
+	<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
+		<a href="{{d[i].TEMPLATE}}" >{{d[i].TITLE}}</a>
+	</li>
+	{{# }}}
+</script>
 
 </head>
 <body>
@@ -58,10 +65,7 @@
 			<div style="width:1080px; height:100%; margin:0px auto; font-size:18px;">
 				<ul style="list-style:none; padding:0px; margin:0px; ">
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
-						<a href="${webRoot}blogs/index" style="padding:13px 20px; color:white; background-color: #1ABC9C">HOME</a>
-					</li>
-					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
-						<a href="" style="padding:13px 20px; color:white;">TAG</a>
+						<a href="${webRoot}blogs" style="padding:13px 20px; color:white; background-color: #1ABC9C">HOME</a>
 					</li>
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
 						<a href="" style="padding:13px 20px; color:white;">ABOUT</a>
@@ -70,7 +74,7 @@
 			</div>
 		</div>
 		<div class="user">
-			<a href="${webRoot}template/1414500800834.html">1414500800834.html</a>
+		
 		</div>
 	</header>
 	
@@ -91,7 +95,7 @@
 			<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px;">
 				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
 					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;">
-						文章标签
+						<strong style="color:#555">文章标签</strong>
 					</li>
 					<#list global_btag as btag>
 						<li style="width:100%; height:30px; line-height:30px; padding-left:10px; border-top: 1px solid #eee; cursor:pointer; ">
@@ -100,17 +104,21 @@
 					</#list>
 				</ul>
 			</div>
-			<!-- 热门排行 -->
+			<!-- 热门文章 -->
+			<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px;">
+				<ul id="hotblogView" style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
+					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;">
+						<strong style="color:#555">热门文章</strong>
+					</li>
+				</ul>
+			</div>
+			<!-- 推荐阅读 -->
 			<div style="width: 100%; height: 500px; background-color: white; margin-bottom: 10px;">
-				
-			</div>
-			<!-- 最新发布 -->
-			<div style="width: 100%; height: 300px; background-color: white; margin-bottom: 10px;">
-				
-			</div>
-			<!-- 猜你喜欢 -->
-			<div style="width: 100%; height: 300px; background-color: white; margin-bottom: 10px;">
-				
+				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
+					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;">
+						<strong style="color:#555">推荐阅读</strong>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</section>

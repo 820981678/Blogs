@@ -7,6 +7,8 @@
 		<property name="cacheInit">
 			<list>
 				<bean id="bTag" class="com.glogs.init.cache.inter.impl.BTagInitImpl"></bean>
+				<bean id="hotBlog" class="com.glogs.init.cache.inter.impl.HotBlogInitImpl"></bean>
+				<bean id="dischargedRequest" class="com.glogs.init.cache.inter.impl.DischargedRequestInitImpl"></bean>
 			</list>
 		</property>
 	</bean>

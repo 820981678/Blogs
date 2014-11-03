@@ -75,6 +75,23 @@ function view(data){
 }
 
 /**
+ * 获取热门文章
+ */
+$(function(){
+	$.ajax({
+		url: 'blogs/queryHotBlog',
+		type: 'post',
+		dataType: 'json',
+		success: function(data){
+			var gettpl = document.getElementById('hotblog').innerHTML;
+			laytpl(gettpl).render(data.data, function(html){
+			    $('#hotblogView').append(html);
+			});
+		}
+	});
+});
+
+/**
  * 重新计算父页面高度
  */
 function createParentHeight(){

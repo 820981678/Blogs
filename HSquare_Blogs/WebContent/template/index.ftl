@@ -43,7 +43,7 @@ $(function(){
 			<div style="width:1080px; height:100%; margin:0px auto; font-size:18px;">
 				<ul style="list-style:none; padding:0px; margin:0px; ">
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
-						<a href="blogs/index.do" style="padding:13px 20px; color:white;">HOME</a>
+						<a href="blogs" style="padding:13px 20px; color:white;">HOME</a>
 					</li>
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
 						<a href="" style="padding:13px 20px; color:white;">TAG</a>

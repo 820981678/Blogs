@@ -266,4 +266,18 @@ public class BlogsController extends BaseController {
 		return map;
 	}
 	
+	/**
+	 * 获取热门推荐文章
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value="/queryHotBlog")
+	@ResponseBody
+	public Map<String, Object> queryHotBlog(){
+		List<Map<String, Object>> list = GlobalCache.getHotBlog();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data", list);
+		return map;
+	}
+	
 }
