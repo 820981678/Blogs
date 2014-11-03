@@ -10,10 +10,10 @@
 <script type="text/javascript" src="${webRoot}static/blogs/insertBlog/index.js"></script>
 
 <!-- ueditor -->
-<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor/ueditor.all.min.js"> </script>
-<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor/lang/zh-cn/zh-cn.js"></script>
-<link href="${webRoot}plug/ueditor/themes/default/css/ueditor.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor_min/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor_min/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor_min/lang/zh-cn/zh-cn.js"></script>
+<link href="${webRoot}plug/ueditor_min/themes/default/css/ueditor.css" rel="stylesheet" type="text/css" />
 
 <!-- button css-->
 <link rel="stylesheet" type="text/css" href="${webRoot}plug/button/button.css" />
@@ -63,7 +63,7 @@
 			</div>
 			<div style="width:100%; height:620px; margin-top:5px;">
 				<!--编辑器-->
-				<script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
+				<script id="editor" type="text/plain" style="width:100%;height:520px;"></script>
 				<script type="text/javascript">
 				    //实例化编辑器(表单提交参数名为:editorValue
 				    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例

@@ -7,7 +7,7 @@
 <!-- 本地 -->
 <link href="../static/blogs/index/css/index.css" rel="stylesheet" />
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../plug/ueditor/ueditor.parse.min.js"></script>
+<script type="text/javascript" src="../plug/ueditor_min/ueditor.parse.min.js"></script>
 <script type="text/javascript">
 /**
  * ajax查询博客点击量
@@ -126,7 +126,7 @@ $(function(){
 	
 	<script type="text/javascript">
 		uParse('#blog', {
-		    rootPath: '../plug/ueditor'
+		    rootPath: '../plug/ueditor_min'
 		});
 	</script>
 </body>
