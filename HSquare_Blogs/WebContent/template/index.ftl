@@ -17,7 +17,7 @@ $(function(){
 	$.ajax({
 		url: "../blogs/queryBolgCheckNum",
 		type: 'post',
-		data: {"blogId":$("#checkNum").html()},
+		data: {"blogId":$("#checkNumVal").val()},
 		dataType: 'json',
 		success: function(data){
 			if(data.code != 0){
@@ -42,6 +42,7 @@ $(function(){
 		<div class="daohang">
 			<div style="width:1080px; height:100%; margin:0px auto; font-size:18px;">
 				<ul style="list-style:none; padding:0px; margin:0px; ">
+					<!--
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
 						<a href="blogs" style="padding:13px 20px; color:white;">HOME</a>
 					</li>
@@ -51,6 +52,7 @@ $(function(){
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
 						<a href="" style="padding:13px 20px; color:white;">ABOUT</a>
 					</li>
+					-->
 					<li style="width:auto; height:50px; float:left; line-height:50px; cursor:pointer; ">
 						<a href="javascript:void(0);" style="padding:13px 20px; color:white; background-color: #1ABC9C"">${blog.btagName}</a>
 					</li>
@@ -71,7 +73,8 @@ $(function(){
 					<div style="width:100%; height:20px; color:#999; ">
 						<span style="margin-right:15px;">发布人: <span style="color:#00a67c">${blog.userName}</span></span>
 						<span style="margin-right:15px;">时间: <span style="color:#00a67c">${blog.updateTime?string("yyyy-MM-dd HH:mm:ss")}</span></span>
-						<span style="margin-right:15px;">点击量: <span style="color:#00a67c">100</span></span>
+						<span style="margin-right:15px;">点击量: <span id="checkNum" style="color:#00a67c">load...</span></span>
+						<input type="hidden" id="checkNumVal" value="${blog.id}" />
 						<span style="margin-right:15px;">评论: <span style="color:#00a67c">100</span></span>
 						<span style="margin-right:15px;">点赞: <span style="color:#00a67c">100</span></span>
 					</div>
@@ -89,34 +92,21 @@ $(function(){
 			</div>
 			<!-- 点赞 -->
 			<div style="width:100%; height:auto;">
-				
+			
 			</div>
 		</div>
 		
-		<div style="width: 200px; height: 100%; float: left; margin-left: 10px;">
-			<div style="width: 100%; height: 500px; background-color: white; margin-bottom: 10px;">
-				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
-					<li style=" height:40px; line-height:40px; padding-left:10px; font-size:18px; border-bottom:1px solid #eee;">
-						TA的博客
-					</li>
-				</ul>
-			</div>		
-			<!-- 阅读排行 -->
-			<div style="width: 100%; height: 350px; background-color: white; margin-bottom: 10px;">
-				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
-					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;  border-bottom:1px solid #eee;">
-						阅读排行
-					</li>
-				</ul>
-			</div>
-			<!-- 猜你喜欢 -->
-			<div style="width: 100%; height: 350px; background-color: white; margin-bottom: 10px;">
-				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
-					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;  border-bottom:1px solid #eee;">
-						猜你喜欢
-					</li>
-				</ul>
-			</div>
+		<div id="v" style="width: 200px; height: 100%; float: left; margin-left: 10px;">
+			<script type="text/javascript">
+				$.ajax({
+					url: '../user/${blog.userName}',
+					type: 'post',
+					dataType: 'html',
+					success: function(ht){
+						$("#v").html(ht);
+					}
+				});
+			</script>
 		</div>
 	</section>
 	

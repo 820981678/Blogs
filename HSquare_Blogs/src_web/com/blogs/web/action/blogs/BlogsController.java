@@ -57,7 +57,7 @@ public class BlogsController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping()
+	@RequestMapping(value="/index")
 	public ModelAndView index() throws Exception {
 		ModelAndView model = new ModelAndView();
 		//设置文章标签
