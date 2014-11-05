@@ -36,8 +36,12 @@ a:hover{
 .header .user{
 	width: 1080px;
 	height: 40px;
+	line-height: 40px;
 	margin: 0px auto;
 	background: white;
+	text-align:right;
+	font-size: 15px;
+	color: #777;
 }
 
 /*section*/

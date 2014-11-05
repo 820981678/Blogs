@@ -40,4 +40,14 @@ public class PublicKey {
 	 */
 	public static final String DISCHARGED_HTML = "discharged.html";
 	
+	/**
+	 * session中存放 登陆用户信息 key
+	 */
+	public static final String SESSION_USER_KEY = "user";
+	
+	/**
+	 * cookie中存储 登陆后的信息的key
+	 */
+	public static final String COOKIE_USER_KEY = "user";
+	
 }

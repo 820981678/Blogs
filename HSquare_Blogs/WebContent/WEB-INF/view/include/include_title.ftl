@@ -16,6 +16,6 @@
 		</ul>
 	</div>
 </div>
-<div class="user">
+<div id="userShow" class="user" >
 	
 </div>

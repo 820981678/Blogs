@@ -8,6 +8,9 @@
 <link href="${webRoot}static/blogs/index/css/index.css" rel="stylesheet" />
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="${webRoot}static/blogs/index/js/index.js"></script>
+<!-- cookie -->
+<script type="text/javascript" src="${webRoot}plug/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="${webRoot}static/global/js/global.cookie.js"></script>
 
 <!-- js模板引擎 -->
 <script src="${webRoot}plug/laytpl/laytpl.js"></script>
@@ -31,7 +34,7 @@
 				<a style="position: relative; margin-right:5px; color: #fff; background-color: #d9534f; font-size: 14px; padding: 2px 2px 2px 6px; top:-2px;" href="http://www.cricode.com/category/os/android">
 					{{d.result[i].btagName}}
 				</a>
-				<a href="{{d.result[i].template}}" style="font-weight: normal;" target="_blank" title="{{d.result[i].title}}" >{{d.result[i].title}}</a>
+				<a href="../{{d.result[i].template}}" style="font-weight: normal;" target="_blank" title="{{d.result[i].title}}" >{{d.result[i].title}}</a>
 			</div>
 			<div style="width:auto; line-height:24px; color:#777; font-family: Microsoft Yahei,Helvetica Neue,Helvetica,Arial,sans-serif; font-size: 14px; margin-bottom:10px; word-wrap:break-word; word-break:break-all;">
 				{{d.result[i].overview}}

@@ -5,11 +5,13 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.glogs.entity.account.Token;
 import com.glogs.util.GlobalLogger;
 import com.glogs.util.PublicKey;
 import com.util.StringUtil;
@@ -23,6 +25,14 @@ public class HttpInterceptor implements HandlerInterceptor {
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object arg2) throws Exception {
+		HttpSession session = request.getSession();
+		Object obj = session.getAttribute(PublicKey.SESSION_USER_KEY);
+		if(obj != null){
+			Token token = (Token)obj;
+			System.out.println(token.getUserName());
+		}
+		
+		
 		//记录业务开始执行的时间
 		long startTime = System.currentTimeMillis();
 		request.setAttribute(PublicKey.ACTION_STARTTIME, startTime);
