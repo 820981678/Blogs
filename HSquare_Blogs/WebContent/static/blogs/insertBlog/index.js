@@ -9,6 +9,15 @@ $(function(){
 		$("#state").val(2);
 		sub();
 	});
+	
+	//美化checkbox redio
+	$('input').iCheck({  
+		checkboxClass: 'icheckbox_square-green',  //每个风格都对应一个，这个不能写错哈。  
+		radioClass: 'iradio_square-green'
+	});
+	$($("input[name='btype']")[0]).iCheck("check");
+	$($("input[name='btagId']")[0]).iCheck("check");
+	
 });
 
 function sub(){

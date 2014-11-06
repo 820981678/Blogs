@@ -19,3 +19,13 @@
 <div id="userShow" class="user" >
 	
 </div>
+
+<script id="yes" type="text/html">
+	<span style="color:#1ABC9C;margin-right:10px;" >欢迎您: <a href="${webRoot}{{d}}" >{{d}}</a></span>
+	<span style="color:#1ABC9C;margin-right:10px;" ><a href="${webRoot}blogs/addBlog" target="_blank" style="padding: 5px 30px 5px; margin: 0 2px; background-color: #1ABC9C; color:white;">写博客</a></span>
+</script>
+
+<script id="no" type="text/html">
+	<span style="color:#1ABC9C;margin-right:10px;" ><a href="login/toLogin" style="text-decoration: underline;">登陆</a></span>
+</script>
+

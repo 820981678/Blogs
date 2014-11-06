@@ -19,6 +19,9 @@ public class AccountInterceptor extends HandlerInterceptorAdapter {
 		// 当前用户第一次访问web, 则为其自动分配新的session.
 		HttpSession session = request.getSession();
 		Object u = session.getAttribute(PublicKey.SESSION_USER_KEY);
+		if(null != u){
+			return true;
+		}
 		
 		Cookie[] cookies = request.getCookies();
 		boolean is_cookie = false;
@@ -32,7 +35,7 @@ public class AccountInterceptor extends HandlerInterceptorAdapter {
 		}
 		
 		//当cookie中有值  session中没值时  登陆
-		if(is_cookie && u == null){
+		if(is_cookie){
 			//直接将用户设置到session中
 			// TODO 完成用户的登陆
 			User user = new User();

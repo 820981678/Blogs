@@ -93,6 +93,8 @@ public class BlogsController extends BaseController {
 		} catch (DBException e) {
 			log.error("find query error", e);
 			throw e;
+		} finally {
+			DBHandle.release();
 		}
 		model.addObject("page", page);
 		model.setViewName("/blogs/index/index");
@@ -138,6 +140,8 @@ public class BlogsController extends BaseController {
 		} catch (DBException e) {
 			log.error("find query error", e);
 			map.put("code", 1);
+		} finally {
+			DBHandle.release();
 		}
 		return map;
 	}
@@ -169,7 +173,7 @@ public class BlogsController extends BaseController {
 	 */
 	@RequestMapping(value="/release", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> release(Blog blog,String editorValue){
+	public Map<String, Object> release(Blog blog,String editorValue) throws DBException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		//初始化blog对象
@@ -203,13 +207,16 @@ public class BlogsController extends BaseController {
 		} catch (DBException e) {
 			log.error("insert blog error", e);
 			map.put("code", 1);
+			DBHandle.rollback();
 		} catch (TemplateException e){
 			log.error("create static template html error", e);
 			map.put("code", 2);
+			DBHandle.rollback();
 		} catch(IOException e){
 			log.error("find create DirectoryForTemplateLoading error", e);
 			map.put("code", 3);
-		}finally {
+			DBHandle.rollback();
+		} finally {
 			DBHandle.release();
 		}
 		
@@ -236,6 +243,8 @@ public class BlogsController extends BaseController {
 		} catch (DBException e) {
 			log.error("select blogText is error", e);
 			throw e;
+		} finally {
+			DBHandle.release();
 		}
 		
 		model.setViewName("/blogs/see/index");
@@ -262,6 +271,8 @@ public class BlogsController extends BaseController {
 		} catch (Exception e) {
 			log.error("query blog checkNum error is cache", e);
 			map.put("code", 1);
+		} finally {
+			DBHandle.release();
 		}
 		return map;
 	}

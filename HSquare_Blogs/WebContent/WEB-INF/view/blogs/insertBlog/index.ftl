@@ -9,6 +9,17 @@
 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="${webRoot}static/blogs/insertBlog/index.js"></script>
 
+<!-- cookie -->
+<script type="text/javascript" src="${webRoot}plug/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="${webRoot}static/global/js/global.cookie.js"></script>
+
+<!-- icheck -->
+<script type="text/javascript" src="${webRoot}plug/icheck/icheck.min.js"></script>
+<link href="${webRoot}plug/icheck/green.css" rel="stylesheet" />
+
+<!-- js模板引擎 -->
+<script src="${webRoot}plug/laytpl/laytpl.js"></script>
+
 <!-- ueditor -->
 <script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor_min/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="${webRoot}plug/ueditor_min/ueditor.all.min.js"> </script>
@@ -54,19 +65,22 @@
 				<div style="width:100%; height:50px; line-height:50px; padding-left:10px; margin-top:10px;">
 					类型:
 					<#list btype as type>
-						<input type="radio" value="${type.getKey()}" name="btype" />${type.getName()}
+						<input class="radio_1" type="radio"  value="${type.getKey()}" name="btype" />
+						<lable>${type.getName()}</lable>
 					</#list>
 					<span style="color:#ccc">*只有原创和翻译文章才能推荐到首页<span>
 				</div>
 				<div style="width:100%; height:50px; line-height:50px; padding-left:10px;">
-					标题:
-					<input type="text" name="title" style="height:20px; width:810px;" />
-				</div>
-				<div style="width:100%; height:50px; line-height:50px; padding-left:10px;">
 					标签:
 					<#list btag as tag>
-						<input type="radio" value="${tag.id}" name="btagId" />${tag.tagName}
+						<input type="radio" value="${tag.id}" name="btagId" />
+						<lable>${tag.tagName}</lable>
 					</#list>
+				</div>
+				
+				<div style="width:100%; height:50px; line-height:50px; padding-left:10px;">
+					标题:
+					<input type="text" name="title" style="height:20px; width:810px;" />
 				</div>
 			</div>
 			
@@ -101,10 +115,10 @@
 			</div>
 			
 			<!-- 操作栏 -->
-			<div style="width:100%; height:50px; line-height:50px; background: white; text-align:center;">
-				<a href="javascript:void(0)" class="button blue" id="release" >发布</a>
-				<a href="javascript:void(0)" class="button blue" id="save">保存</a>
-				<a href="javascript:void(0)" class="button blue" id="delete">丢弃</a>
+			<div style="width:100%; height:50px; line-height:50px;  text-align:center;">
+				<a href="javascript:void(0)" class="button_1" id="release" >发  布</a>
+				<a href="javascript:void(0)" class="button_2" id="save">保存</a>
+				<a href="javascript:void(0)" class="button_3" id="delete">丢弃</a>
 			</div>
 		</div>
 	</section>
