@@ -26,8 +26,6 @@ public class AccountInterceptor extends HandlerInterceptorAdapter {
 		Cookie[] cookies = request.getCookies();
 		boolean is_cookie = false;
 		for (Cookie ck : cookies) {
-			System.out.println(ck.getName());
-			System.out.println(ck.getValue());
 			if(ck.getName().equals(PublicKey.COOKIE_USER_KEY)){
 				is_cookie = true;
 				break;

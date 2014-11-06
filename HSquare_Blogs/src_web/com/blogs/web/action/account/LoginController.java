@@ -3,6 +3,7 @@ package com.blogs.web.action.account;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.blogs.web.action.BaseController;
+import com.connection.db.DBException;
+import com.connection.db.DBHandle;
 import com.glogs.entity.account.Token;
 import com.glogs.entity.account.User;
+import com.glogs.service.user.UserService;
 import com.glogs.util.PublicKey;
 
 /**
@@ -27,7 +32,13 @@ import com.glogs.util.PublicKey;
  */
 @RequestMapping(value="/login")
 @Controller
-public class LoginController {
+public class LoginController extends BaseController {
+	
+	/**
+	 * 用户db服务
+	 */
+	@Resource
+	private UserService userService;
 	
 	/**
 	 * 跳转到登陆页面
@@ -46,11 +57,20 @@ public class LoginController {
 	public Map<String, Object> doLogin(User user,boolean isSave,HttpServletResponse response,HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		// TODO 完成用户的登陆
-		
-		//模拟测试登陆成功
-		if(!user.getName().equals("Apple") && !user.getPassword().equals("1")){
+		User user_q = null;
+		try {
+			user_q = userService.query_name_pwd(user.getName(), user.getPassword());
+		} catch (DBException e) {
+			log.error("query user error", e);
 			map.put("code", 1);
+			return map;
+		} finally {
+			DBHandle.release();
+		}
+		
+		if(user_q == null){
+			map.put("code", 1);
+			return map;
 		}
 		
 		//设置cookie
@@ -63,7 +83,7 @@ public class LoginController {
 		response.addCookie(cookie_user);
 		
 		//设置session
-		Token token = new Token(user);
+		Token token = new Token(user_q);
 		HttpSession session = request.getSession();
 		session.setAttribute(PublicKey.SESSION_USER_KEY, token);
 		

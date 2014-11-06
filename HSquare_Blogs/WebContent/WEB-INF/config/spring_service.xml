@@ -38,6 +38,8 @@
 	
 
 	<!-- DB数据库服务 -->
-	<bean id="blogServiceImpl" class="com.glogs.service.blog.impl.BolgServiceImpl"></bean>
+	<bean id="blogService" class="com.glogs.service.blog.impl.BolgServiceImpl"></bean>
+	
+	<bean id="userService" class="com.glogs.service.user.impl.UserServiceImpl"></bean>
 	
 </beans>

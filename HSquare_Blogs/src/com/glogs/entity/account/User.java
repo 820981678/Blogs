@@ -2,6 +2,8 @@ package com.glogs.entity.account;
 
 public class User {
 	
+	public static final String DB_NAME = "BLOG_USER";
+	
 	private Integer id;
 	
 	private String name;

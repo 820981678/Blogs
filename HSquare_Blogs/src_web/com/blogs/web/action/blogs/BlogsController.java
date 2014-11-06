@@ -38,7 +38,7 @@ public class BlogsController extends BaseController {
 	 * DB 数据服务
 	 */
 	@Resource
-	private BlogService blogServiceImpl;
+	private BlogService blogService;
 	
 	/**
 	 * 静态页面生成服务
@@ -88,7 +88,7 @@ public class BlogsController extends BaseController {
 		}
 		Page<Blog> page = null;
 		try {
-			page = blogServiceImpl.queryBlog(pageNo, pageSize);
+			page = blogService.queryBlog(pageNo, pageSize);
 			System.out.println(page);
 		} catch (DBException e) {
 			log.error("find query error", e);
@@ -125,9 +125,9 @@ public class BlogsController extends BaseController {
 		Page<Blog> page = null;
 		try {
 			if(btagId != null){
-				page = blogServiceImpl.queryBlogByBtag(pageNo, pageSize, btagId);
+				page = blogService.queryBlogByBtag(pageNo, pageSize, btagId);
 			} else {
-				page = blogServiceImpl.queryBlog(pageNo, pageSize);
+				page = blogService.queryBlog(pageNo, pageSize);
 			}
 			
 			//设置页面所需的 标签名称
@@ -191,8 +191,8 @@ public class BlogsController extends BaseController {
 			blog.setTemplate(blogStatic.validatePath());
 			
 			DBHandle.beginTransation();
-			int _i = blogServiceImpl.add(blog);
-			int _j = blogServiceImpl.addBlogContent(_i, editorValue);
+			int _i = blogService.add(blog);
+			int _j = blogService.addBlogContent(_i, editorValue);
 			
 			//设置插入数据库后 blog的id, 用于在模板上生成id
 			blog.setId(_i);
@@ -233,10 +233,10 @@ public class BlogsController extends BaseController {
 	public ModelAndView seeBlog(@PathVariable("blogId")Integer blogId) throws DBException {
 		ModelAndView model = new ModelAndView();
 		try {
-			Blog blog = blogServiceImpl.queryBlogById(blogId);
+			Blog blog = blogService.queryBlogById(blogId);
 			blog.setBtagName(GlobalCache.getBtagById(blog.getBtagId()).getTagName());
 			
-			String blogText = blogServiceImpl.queryBlogTextByBlogId(blogId);
+			String blogText = blogService.queryBlogTextByBlogId(blogId);
 			
 			model.addObject("blog", blog);
 			model.addObject("blogText", blogText);
