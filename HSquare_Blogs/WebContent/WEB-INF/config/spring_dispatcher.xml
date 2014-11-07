@@ -20,6 +20,7 @@
 		<!-- 在这里可以配置Interceptor -->
 		<property name="interceptors">
 			<list>
+				<bean class="com.blogs.web.interceptor.MustLoginRequestInterceptor"></bean>
 				<bean class="com.blogs.web.interceptor.AccountInterceptor"></bean>
 				<bean class="com.blogs.web.interceptor.HttpInterceptor"></bean>
 			</list>

@@ -9,6 +9,15 @@ public class Token {
 	private User user;
 	
 	/**
+	 * 获取当前用户
+	 * 
+	 * @return
+	 */
+	public User getUser(){
+		return user;
+	}
+	
+	/**
 	 * 获取用户id
 	 * 
 	 * @return

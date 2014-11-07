@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.connection.db.DBHandle;
 import com.connection.page.Page;
 import com.generate.BlogStatic;
 import com.glogs.emu.blog.BType;
+import com.glogs.entity.account.User;
 import com.glogs.entity.blog.BTag;
 import com.glogs.entity.blog.Blog;
 import com.glogs.init.cache.GlobalCache;
@@ -173,7 +175,7 @@ public class BlogsController extends BaseController {
 	 */
 	@RequestMapping(value="/release", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> release(Blog blog,String editorValue) throws DBException {
+	public Map<String, Object> release(Blog blog,String editorValue,HttpServletRequest request) throws DBException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		//初始化blog对象
@@ -182,9 +184,9 @@ public class BlogsController extends BaseController {
 		blog.setUpdateTime(new Date());
 		//设置标签名称 用于生成静态html文件使用
 		blog.setBtagName(GlobalCache.getBtagById(blog.getBtagId()).getTagName());
-		// TODO 完成对发布人的设置
-		blog.setUserId(0);
-		blog.setUserName("Apple");
+		User user = getUser(request);
+		blog.setUserId(user.getId());
+		blog.setUserName(user.getName());
 		
 		try {
 			//设置html静态文件地址

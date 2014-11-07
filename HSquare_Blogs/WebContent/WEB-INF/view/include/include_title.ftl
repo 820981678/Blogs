@@ -26,6 +26,6 @@
 </script>
 
 <script id="no" type="text/html">
-	<span style="color:#1ABC9C;margin-right:10px;" ><a href="login/toLogin" style="text-decoration: underline;">登陆</a></span>
+	<span style="color:#1ABC9C;margin-right:10px;" ><a href="login/toLogin" target="_blank" style="padding: 5px 30px 5px; margin: 0 2px; background-color: #1ABC9C; color:white;">登陆</a></span>
 </script>
 

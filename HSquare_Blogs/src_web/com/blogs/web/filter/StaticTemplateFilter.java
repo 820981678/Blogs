@@ -2,6 +2,7 @@ package com.blogs.web.filter;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
@@ -47,28 +49,34 @@ public class StaticTemplateFilter implements Filter {
 		String servletPath = request.getServletPath();
 		if(!discharged(servletPath)){
 			chain.doFilter(arg0, response);
+			return;
 		}
-		String htmlPath = PropertiesConfigurer.getStringValueByKey("freemarker.static.path") + servletPath;
-		InputStreamReader inr = new InputStreamReader(new FileInputStream(htmlPath),"UTF-8");
 		
-		BufferedReader br = new BufferedReader(inr);
 		PrintWriter out = null;
-		String data = null;
+		BufferedReader br = null;
 		try{
+			String htmlPath = PropertiesConfigurer.getStringValueByKey("freemarker.static.path") + servletPath;
+			InputStreamReader inr = new InputStreamReader(new FileInputStream(htmlPath),"UTF-8");
+			
+			br = new BufferedReader(inr);
+			out = null;
+			String data = null;
 			out = response.getWriter();
 			while( (data = br.readLine()) != null){
 				out.println(data);
 			}
+		} catch(FileNotFoundException e){
+			logger.error("not found file", e);
+			((HttpServletResponse)response).sendRedirect("../static/exception/notfound_file.html");
 		} catch (IOException e){
 			logger.error("out template html error", e);
-			// TODO 完成没有该文件的友好提示
-			out.write("not found this html page!");
+			((HttpServletResponse)response).sendRedirect("../static/exception/notfound_file.html");
 		} finally {
 			br.close();
 			out.flush();
 			out.close();
 		}
-		//chain.doFilter(request, response);
+		return;
 	}
 	
 	/**

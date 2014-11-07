@@ -14,20 +14,20 @@ import com.glogs.entity.account.User;
 public interface UserService {
 	
 	/**
-	 * 根据用户名密码 查询用户
+	 * 登陆
 	 * 
 	 * @param name
 	 * @param pwd
-	 * @return
+	 * @return	登陆成功的用户对象(登陆不成功返回null)
 	 */
-	User query_name_pwd(String name,String pwd) throws DBException;
+	User login(String name,String pwd) throws DBException;
 	
 	/**
-	 * 根据用户名查询用户
+	 * 根据用户名登陆
 	 * 
 	 * @param name
 	 * @return
 	 */
-	User query_name(String name) throws DBException;
+	User login_name(String name) throws DBException;
 	
 }

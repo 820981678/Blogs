@@ -73,7 +73,7 @@ $(function(){
 				<div style="padding: 2px 20px 12px;">
 					<h1 style="color: #444; font-weight: normal; font-size: 24px; line-height: 60px; margin: 5px 0;">${blog.title}</h1>
 					<div style="width:100%; height:20px; color:#999; ">
-						<span style="margin-right:15px;">发布人: <span style="color:#00a67c">${blog.userName}</span></span>
+						<span style="margin-right:15px;">发布人: <span style="color:#00a67c"><a href="../${blog.userName}">${blog.userName}</a></span></span>
 						<span style="margin-right:15px;">时间: <span style="color:#00a67c">${blog.updateTime?string("yyyy-MM-dd HH:mm:ss")}</span></span>
 						<span style="margin-right:15px;">点击量: <span id="checkNum" style="color:#00a67c">load...</span></span>
 						<input type="hidden" id="checkNumVal" value="${blog.id}" />

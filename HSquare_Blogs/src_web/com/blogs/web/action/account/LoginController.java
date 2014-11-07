@@ -59,7 +59,7 @@ public class LoginController extends BaseController {
 		
 		User user_q = null;
 		try {
-			user_q = userService.query_name_pwd(user.getName(), user.getPassword());
+			user_q = userService.login(user.getName(), user.getPassword());
 		} catch (DBException e) {
 			log.error("query user error", e);
 			map.put("code", 1);

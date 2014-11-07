@@ -6,6 +6,6 @@
 
 </head>
 <body>
-	im sorry error!
+	对不起,服务器异常
 </body>
 </html>

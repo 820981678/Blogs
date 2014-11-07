@@ -50,4 +50,9 @@ public class PublicKey {
 	 */
 	public static final String COOKIE_USER_KEY = "user";
 	
+	/**
+	 * 需要登陆验证的请求 在配置文件中key
+	 */
+	public static final String MUST_LOGIN_URL = "must.login.url";
+	
 }

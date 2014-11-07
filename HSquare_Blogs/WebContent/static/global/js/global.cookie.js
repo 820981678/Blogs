@@ -12,8 +12,13 @@ $(function(){
 		    $('#userShow').html(html);
 		});
 	} else {
+		var myObj =
+	    {
+	        'id': 1,        //属性名用引号括起来，属性间由逗号隔开
+	        'name': 'myName'
+	    };
 		var gettpl = document.getElementById('no').innerHTML;
-		laytpl(gettpl).render(user, function(html){
+		laytpl(gettpl).render(myObj,function(html){
 		    $('#userShow').html(html);
 		});
 	}
