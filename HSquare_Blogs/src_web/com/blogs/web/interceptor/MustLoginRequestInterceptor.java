@@ -44,7 +44,7 @@ public class MustLoginRequestInterceptor extends HandlerInterceptorAdapter imple
 			//获取session中是否有登陆信息
 			Object obj = session.getAttribute(PublicKey.SESSION_USER_KEY);
 			if(obj == null){
-				response.sendRedirect("../static/exception/must_login.html");
+				response.sendRedirect(getBaseUrl(request) + "static/exception/must_login.html");
 				return false;
 			}
 		}
@@ -77,6 +77,18 @@ public class MustLoginRequestInterceptor extends HandlerInterceptorAdapter imple
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * 获取请求的根路径
+	 * 
+	 * @param request
+	 * @return
+	 */
+	private String getBaseUrl(HttpServletRequest request){
+		String path = request.getContextPath();
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+		return basePath;
 	}
 	
 }

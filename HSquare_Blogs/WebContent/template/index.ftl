@@ -67,7 +67,7 @@ $(function(){
 	</header>
 	
 	<section id="section" class="section">
-		<div style="width: 870px; height: auto; float: left; background-color:white;">
+		<div style="width: 1080px; height: auto; float: left; background-color:white;">
 			<!-- 文章基本信息 -->
 			<div style="width:100%; height:105px; border-bottom:1px solid #eee; margin-bottom:10px;">
 				<div style="padding: 2px 20px 12px;">
@@ -83,8 +83,17 @@ $(function(){
 				</div>
 			</div>
 			<!-- 广告 -->
-			<div style="width:100%; height:150px; ">
-				
+			<div id="guanggao" style="width:100%; height:150px;" >
+				<script type="text/javascript">
+					$.ajax({
+						url: '../guanggao/_1',
+						type: 'post',
+						dataType: 'html',
+						success: function(htm){
+							$("#guanggao").html(htm);
+						}
+					});
+				</script>
 			</div>
 			<!-- 博客正文 -->
 			<div style="width:100%; height:auto;">
@@ -96,19 +105,6 @@ $(function(){
 			<div style="width:100%; height:auto;">
 			
 			</div>
-		</div>
-		
-		<div id="v" style="width: 200px; height: 100%; float: left; margin-left: 10px;">
-			<script type="text/javascript">
-				$.ajax({
-					url: '../user/${blog.userName}',
-					type: 'post',
-					dataType: 'html',
-					success: function(ht){
-						$("#v").html(ht);
-					}
-				});
-			</script>
 		</div>
 	</section>
 	

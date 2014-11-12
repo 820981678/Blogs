@@ -40,22 +40,10 @@
 		<#include "/include/include_title.ftl" >
 	</header>
 <form id="blogForm">
-	<section style="width: 1080px; height: 1080px; margin-top: 10px; margin: 10px auto;">
-		<!-- 个人信息 -->
-		<div id="v" style="width:200px; height:200px; background: white; margin-right:10px; margin-bottom:10px; float:left;">
-			<script type="text/javascript">
-				$.ajax({
-					url: '../user/111',
-					type: 'post',
-					dataType: 'html',
-					success: function(ht){
-						$("#v").html(ht);
-					}
-				});
-			</script>
-		</div>
+	<section style="width: 1080px; height: 1060px; margin-top: 10px; margin: 10px auto;">
+		
 		<!-- 基本信息 -->
-		<div  style="width:870px; height:auto; margin-bottom:10px; float:left;">
+		<div  style="width:1080px; height:auto; margin-bottom:10px; float:left;">
 			<div style="width:100%; height:200px; background: white; margin-bottom:10px;">
 				<div style="width:100%; heigth:30px; line-height:30px; border-bottom: 2px solid #1ABC9C; ">
 					<strong style="margin-left:10px;">文章信息</strong>
@@ -123,7 +111,7 @@
 		</div>
 	</section>
 	
-	<footer style="width: 100%; height:100px;  background: #555; margin-top: 10px;">
+	<footer class="footer">
 		<#include "/include/include_footer.ftl" >
 	</footer>
     

@@ -77,4 +77,9 @@
 		<welcome-file>blogs/index</welcome-file>
 	</welcome-file-list>
 	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/static/exception/404.html</location>
+	</error-page>
+	
 </web-app>

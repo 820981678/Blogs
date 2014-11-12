@@ -133,7 +133,7 @@
 			<div id="view" style="width: 770px; height: auto; color:#555;">
 			
 			</div>
-			<div id="nextpage" style="width:770px; height:30px; line-height:30px; background-color: #1ABC9C; color: white; text-align: center; cursor:pointer;">
+			<div id="nextpage" style="width:770px; height:auto; line-height:30px; background-color: #1ABC9C; color: white; text-align: center; cursor:pointer;">
 				Next Page
 			</div>
 		</div>

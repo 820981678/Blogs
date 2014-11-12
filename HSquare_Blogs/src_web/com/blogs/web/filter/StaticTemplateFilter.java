@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import com.glogs.init.cache.GlobalCache;
 import com.glogs.init.properties.PropertiesConfigurer;
 import com.glogs.util.GlobalLogger;
+import com.util.FileUtil;
 import com.util.LogsUtil;
 
 public class StaticTemplateFilter implements Filter {
@@ -67,14 +68,18 @@ public class StaticTemplateFilter implements Filter {
 			}
 		} catch(FileNotFoundException e){
 			logger.error("not found file", e);
-			((HttpServletResponse)response).sendRedirect("../static/exception/notfound_file.html");
+			((HttpServletResponse)response).sendRedirect(getBaseUrl(request) + "static/exception/notfound_file.html");
 		} catch (IOException e){
 			logger.error("out template html error", e);
-			((HttpServletResponse)response).sendRedirect("../static/exception/notfound_file.html");
+			((HttpServletResponse)response).sendRedirect(getBaseUrl(request) + "static/exception/notfound_file.html");
 		} finally {
-			br.close();
-			out.flush();
-			out.close();
+			if(br != null){
+				br.close();
+			}
+			if(out != null){
+				out.flush();
+				out.close();
+			}
 		}
 		return;
 	}
@@ -90,6 +95,18 @@ public class StaticTemplateFilter implements Filter {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * 获取请求的根路径
+	 * 
+	 * @param request
+	 * @return
+	 */
+	private String getBaseUrl(HttpServletRequest request){
+		String path = request.getContextPath();
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+		return basePath;
 	}
 
 }
