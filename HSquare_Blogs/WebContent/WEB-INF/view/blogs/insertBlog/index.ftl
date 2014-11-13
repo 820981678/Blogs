@@ -44,7 +44,7 @@
 		
 		<!-- 基本信息 -->
 		<div  style="width:1080px; height:auto; margin-bottom:10px; float:left;">
-			<div style="width:100%; height:200px; background: white; margin-bottom:10px;">
+			<div style="width:100%; height:200px; background: white; margin-bottom:10px; box-shadow: 0 3px 3px -2px rgba(0,0,0,0.25);">
 				<div style="width:100%; heigth:30px; line-height:30px; border-bottom: 2px solid #1ABC9C; ">
 					<strong style="margin-left:10px;">文章信息</strong>
 				</div>
@@ -73,7 +73,7 @@
 			</div>
 			
 			<!-- 文章内容 -->
-			<div style="width:100%; height:auto; background: white; margin-bottom:10px;">
+			<div style="width:100%; height:auto; background: white; margin-bottom:10px; box-shadow: 0 3px 3px -2px rgba(0,0,0,0.25);">
 				
 				<div style="width:100%; margin-top:5px;">
 					<!--编辑器-->
@@ -87,7 +87,7 @@
 			</div>
 </form>
 			<!-- 提示 -->
-			<div style="width:100%; height:150px; background: white; margin-bottom:10px;">
+			<div style="width:100%; height:150px; background: white; margin-bottom:10px; box-shadow: 0 3px 3px -2px rgba(0,0,0,0.25);">
 				<div style="width:100%; heigth:30px; line-height:30px; border-bottom: 2px solid red; ">
 					<strong style="margin-left:10px; color:red">提示</strong>
 				</div>

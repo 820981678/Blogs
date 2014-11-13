@@ -86,7 +86,7 @@
 		</div>
 	{{# } }}
 	{{# for(var i = 0, len = d.result.length; i < len; i++){ }}
-	<div style="width:770px; height:auto; background-color: white; margin-bottom:10px; ">
+	<div style="width:770px; height:auto; background-color: white; margin-bottom:10px; box-shadow: 0 3px 3px -2px rgba(0,0,0,0.25);">
 		<div style="padding: 20px 15px 10px 20px;">
 			<!-- title -->
 			<div style="width:auto; height:30px; line-height:30px; font-size:18px; color:#1ABC9C; margin-bottom:10px;">
@@ -140,7 +140,7 @@
 		
 		<div style="width: 300px; height: 100%; float: left; margin-left: 10px;">
 			<!-- 导航 -->
-			<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px;">
+			<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px; box-shadow: 0 3px 3px -2px rgba(0,0,0,0.25);">
 				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
 					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;">
 						<strong style="color:#555">文章标签</strong>
@@ -153,7 +153,7 @@
 				</ul>
 			</div>
 			<!-- 热门文章 -->
-			<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px;">
+			<div style="width: 100%; height: auto; background-color: white; margin-bottom: 10px; box-shadow: 0 3px 3px -2px rgba(0,0,0,0.25);">
 				<ul id="hotblogView" style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
 					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;">
 						<strong style="color:#555">热门文章</strong>
@@ -161,7 +161,7 @@
 				</ul>
 			</div>
 			<!-- 推荐阅读 -->
-			<div style="width: 100%; height: 500px; background-color: white; margin-bottom: 10px;">
+			<div style="width: 100%; height: 500px; background-color: white; margin-bottom: 10px; box-shadow: 0 3px 3px -2px rgba(0,0,0,0.25);">
 				<ul style="list-style:none; padding:0px; margin:0px; color:#1ABC9C; ">
 					<li style="height:40px; line-height:40px; padding-left:10px; font-size:18px;">
 						<strong style="color:#555">推荐阅读</strong>
