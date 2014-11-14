@@ -35,4 +35,14 @@ create table Blog_text(
 alter table blog_text add PRIMARY key (id);
 alter table blog_text change id id int not null auto_increment;
 
-
+-- 用户表
+create table blog_user(
+	id int not null,
+	name VARCHAR(32) not null,
+	password VARCHAR(64) not null,
+	
+	createtime datetime not null COMMENT '创建时间',
+	logintime datetime COMMENT '最后登陆时间'
+) COMMENT '用户表';
+alter table blog_user add PRIMARY KEY (id);
+alter table blog_user change id id int not null auto_increment;
